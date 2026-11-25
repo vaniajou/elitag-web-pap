@@ -1,0 +1,39 @@
+.atom-spinner {
+  display: inline-block;
+  border-radius: var(--radius-full);
+  border-style: solid;
+  border-color: currentColor;
+  border-right-color: transparent;
+  animation: atom-spin 0.75s linear infinite;
+  flex-shrink: 0;
+}
+
+.atom-spinner--sm {
+  width: 16px;
+  height: 16px;
+  border-width: var(--border-width-medium);
+}
+
+.atom-spinner--md {
+  width: 20px;
+  height: 20px;
+  border-width: var(--border-width-medium);
+}
+
+.atom-spinner--lg {
+  width: 32px;
+  height: 32px;
+  border-width: 3px;
+}
+
+@keyframes atom-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atom-spinner {
+    animation-duration: 1.5s;
+  }
+}

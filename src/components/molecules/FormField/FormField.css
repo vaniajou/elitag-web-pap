@@ -1,0 +1,68 @@
+/* Jarak di dalam satu kelompok field (8px) lebih rapat daripada antarkelompok (24px) */
+.mol-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.mol-field__control {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.mol-field__left-icon {
+  position: absolute;
+  left: var(--space-16);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.mol-field__left-icon--error {
+  color: var(--color-status-error-text);
+}
+
+/* Penyesuaian padding atom Input saat memuat ikon kiri / tombol aksi kanan */
+.mol-field__input--has-left {
+  padding-left: calc(var(--space-16) + 20px + var(--space-12));
+}
+
+.mol-field__input--has-right {
+  padding-right: calc(var(--touch-target-min) + var(--space-4));
+}
+
+.mol-field__right-action {
+  position: absolute;
+  right: var(--space-4);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Pesan galat kontekstual */
+.mol-field__error {
+  margin: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-8);
+  font-size: var(--font-size-supporting);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-label);
+  color: var(--color-status-error-text);
+}
+
+.mol-field__error-icon {
+  display: inline-flex;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+.mol-field__helper {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-label);
+  color: var(--color-text-muted);
+}

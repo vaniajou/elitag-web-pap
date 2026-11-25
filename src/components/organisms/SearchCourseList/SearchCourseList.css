@@ -1,0 +1,46 @@
+.org-search-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.org-search-list__heading {
+  margin: 0;
+  font-size: var(--font-size-card-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  color: var(--color-text-primary);
+}
+
+/* Mobile-first: daftar vertikal 1 kolom */
+.org-search-list__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+}
+
+.org-search-list__skeleton-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  padding: var(--space-16);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-surface);
+}
+
+/* Breakpoint Desktop (>= 840px): 2 kolom agar memanfaatkan ruang lebar */
+@media (min-width: 840px) {
+  .org-search-list__heading {
+    font-size: var(--font-size-section-title);
+  }
+
+  .org-search-list__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-24);
+  }
+
+  .org-search-list__skeleton-card {
+    padding: var(--space-24);
+  }
+}

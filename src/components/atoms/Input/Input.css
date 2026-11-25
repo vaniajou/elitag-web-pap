@@ -1,0 +1,52 @@
+.atom-input {
+  display: block;
+  width: 100%;
+  min-height: var(--touch-target-min); /* 48px nyaman untuk sentuhan */
+  padding: var(--space-12) var(--space-16);
+  background-color: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-body); /* 16px mencegah auto-zoom di iOS */
+  line-height: var(--line-height-body);
+  transition:
+    border-color var(--transition-normal),
+    box-shadow var(--transition-normal),
+    background-color var(--transition-normal);
+}
+
+.atom-input::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.85;
+}
+
+@media (hover: hover) {
+  .atom-input:hover:not(:disabled):not(.atom-input--error) {
+    border-color: var(--color-border-strong);
+  }
+}
+
+.atom-input:focus-visible {
+  outline: var(--border-width-medium) solid var(--color-focus-ring);
+  outline-offset: 1px;
+  border-color: var(--color-focus-ring);
+}
+
+/* Keadaan galat validasi */
+.atom-input--error {
+  border-width: var(--border-width-medium);
+  border-color: var(--color-status-error);
+  background-color: var(--color-status-error-bg);
+}
+
+.atom-input--error:focus-visible {
+  outline-color: var(--color-status-error);
+  border-color: var(--color-status-error);
+}
+
+.atom-input:disabled {
+  background-color: var(--color-bg-disabled);
+  color: var(--color-text-disabled);
+  border-color: var(--color-border);
+  cursor: not-allowed;
+}

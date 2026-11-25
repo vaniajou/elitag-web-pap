@@ -1,0 +1,193 @@
+.page-home {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+/* Header Mobile-first: Sapaan di atas, SearchBar di bawah */
+.page-home__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.page-home__greeting {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.page-home__welcome {
+  margin: 0;
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+}
+
+.page-home__student-name {
+  margin: 0;
+  font-size: var(--font-size-page-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-page-title);
+  color: var(--color-text-primary);
+}
+
+.page-home__search-wrap {
+  width: 100%;
+}
+
+/* Seksi Deadline Mata Kuliah */
+.page-home__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.page-home__section-title {
+  margin: 0;
+  font-size: var(--font-size-card-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  color: var(--color-text-primary);
+}
+
+.page-home__deadline-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding: var(--space-16);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-surface);
+  box-shadow: var(--elevation-2);
+}
+
+.page-home__deadline-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.page-home__deadline-badge {
+  display: flex;
+}
+
+.page-home__deadline-title {
+  margin: 0;
+  font-size: var(--font-size-card-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  color: var(--color-text-primary);
+}
+
+.page-home__deadline-course {
+  margin: 0;
+  font-size: var(--font-size-body);
+  color: var(--color-text-muted);
+}
+
+.page-home__deadline-due {
+  margin: 0;
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+}
+
+.page-home__deadline-action {
+  display: flex;
+}
+
+.page-home__deadline-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  padding: var(--space-16);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-surface);
+}
+
+/* Panel simulasi 4 state */
+.page-home__demo-bar {
+  margin-top: var(--space-16);
+  padding: var(--space-12) var(--space-16);
+  border: var(--border-width-thin) dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-surface);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+
+.page-home__demo-label {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+}
+
+.page-home__demo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.page-home__demo-btn {
+  min-height: 36px;
+  padding: var(--space-4) var(--space-12);
+  border: var(--border-width-thin) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-page);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+}
+
+.page-home__demo-btn--active {
+  background-color: var(--color-primary-bg);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.page-home__demo-btn:focus-visible {
+  outline: var(--border-width-medium) solid var(--color-focus-ring);
+}
+
+/* Breakpoint Desktop (>= 840px): Header sejajar + kartu Deadline horizontal */
+@media (min-width: 840px) {
+  .page-home {
+    gap: var(--space-32);
+  }
+
+  .page-home__header {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-24);
+  }
+
+  .page-home__search-wrap {
+    max-width: 380px;
+  }
+
+  .page-home__section-title {
+    font-size: var(--font-size-section-title);
+  }
+
+  .page-home__deadline-card {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-24);
+    padding: var(--space-24);
+  }
+
+  .page-home__deadline-action {
+    flex-shrink: 0;
+  }
+
+  .page-home__deadline-skeleton {
+    padding: var(--space-24);
+  }
+}

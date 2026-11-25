@@ -1,0 +1,96 @@
+.mol-activity-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  width: 100%;
+  min-height: 60px;
+  padding: var(--space-12) var(--space-16);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-surface);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.mol-activity-item__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-page);
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.mol-activity-item__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.mol-activity-item__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.mol-activity-item__title {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-heading);
+  color: var(--color-text-primary);
+}
+
+.mol-activity-item__subtitle {
+  font-size: var(--font-size-supporting);
+  line-height: var(--line-height-label);
+  color: var(--color-text-muted);
+}
+
+.mol-activity-item__chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+@media (hover: hover) {
+  .mol-activity-item:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--elevation-1);
+  }
+
+  .mol-activity-item:hover .mol-activity-item__chevron {
+    color: var(--color-primary);
+    transform: translateX(2px);
+  }
+}
+
+.mol-activity-item:active {
+  background-color: var(--color-bg-page);
+}
+
+.mol-activity-item:focus-visible {
+  outline: var(--border-width-medium) solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+@media (min-width: 840px) {
+  .mol-activity-item {
+    padding: var(--space-16);
+    gap: var(--space-16);
+  }
+}

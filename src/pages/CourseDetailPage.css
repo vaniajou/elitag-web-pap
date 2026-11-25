@@ -1,0 +1,278 @@
+/* Mobile-first (< 840px) */
+.page-course {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+.page-course__hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding: var(--space-16);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-surface);
+  box-shadow: var(--elevation-2);
+}
+
+.page-course__hero-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.page-course__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.page-course__title {
+  margin: 0;
+  font-size: var(--font-size-page-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-page-title);
+  color: var(--color-text-primary);
+}
+
+.page-course__code {
+  margin: 0;
+  font-size: var(--font-size-supporting);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+}
+
+.page-course__lecturer {
+  margin: 0;
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+}
+
+.page-course__hero-action {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.page-course__meeting-note {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  color: var(--color-text-muted);
+}
+
+.page-course__notice {
+  margin: 0;
+  padding: var(--space-12) var(--space-16);
+  border-radius: var(--radius-md);
+  background-color: var(--color-status-info-bg);
+  color: var(--color-status-info-text);
+  font-size: var(--font-size-supporting);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Tata letak konten mobile: Pengumuman dulu (via order), lalu aktivitas & daftar, lalu keluar */
+.page-course__layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+.page-course__main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+.page-course__side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.page-course__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.page-course__section-title {
+  margin: 0;
+  font-size: var(--font-size-card-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  color: var(--color-text-primary);
+}
+
+.page-course__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+/* Kartu Pengumuman Kelas */
+.page-course__announcement {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: var(--space-16);
+  border: var(--border-width-thin) solid var(--color-status-info);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-status-info-bg);
+}
+
+.page-course__announcement-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  color: var(--color-status-info-text);
+}
+
+.page-course__announcement-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.page-course__announcement-title {
+  margin: 0;
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  color: var(--color-status-info-text);
+}
+
+.page-course__announcement-body {
+  margin: 0;
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  color: var(--color-text-primary);
+}
+
+.page-course__announcement-meta {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  color: var(--color-text-muted);
+}
+
+/* Bagian Keluar dari Kelas */
+.page-course__danger-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-8);
+  padding: var(--space-16);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-surface);
+}
+
+.page-course__danger-title {
+  margin: 0;
+  font-size: var(--font-size-supporting);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+.page-course__danger-desc {
+  margin: 0;
+  font-size: var(--font-size-supporting);
+  line-height: var(--line-height-body);
+  color: var(--color-text-muted);
+}
+
+.page-course__leave-btn {
+  padding-inline: 0;
+  color: var(--color-status-error-text);
+}
+
+/* Panel simulasi state */
+.page-course__demo-bar {
+  margin-top: var(--space-8);
+  padding: var(--space-12) var(--space-16);
+  border: var(--border-width-thin) dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-surface);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+
+.page-course__demo-label {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+}
+
+.page-course__demo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.page-course__demo-btn {
+  min-height: 36px;
+  padding: var(--space-4) var(--space-12);
+  border: var(--border-width-thin) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-page);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+}
+
+.page-course__demo-btn--active {
+  background-color: var(--color-primary-bg);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.page-course__demo-btn:focus-visible {
+  outline: var(--border-width-medium) solid var(--color-focus-ring);
+}
+
+/* Breakpoint Desktop (>= 840px): Hero horizontal + 2 kolom konten */
+@media (min-width: 840px) {
+  .page-course {
+    gap: var(--space-32);
+  }
+
+  .page-course__hero {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-24);
+    padding: var(--space-24);
+  }
+
+  .page-course__hero-action {
+    align-items: flex-end;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .page-course__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    align-items: start;
+    gap: var(--space-24);
+  }
+
+  .page-course__side {
+    position: sticky;
+    top: var(--space-32);
+    gap: var(--space-24);
+  }
+
+  .page-course__section-title {
+    font-size: var(--font-size-section-title);
+  }
+
+  .page-course__announcement,
+  .page-course__danger-box {
+    padding: var(--space-24);
+  }
+}

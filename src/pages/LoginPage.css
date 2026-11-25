@@ -1,0 +1,152 @@
+.page-login {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+.page-login__intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.page-login__title {
+  margin: 0;
+  font-size: var(--font-size-page-title); /* 24px */
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-page-title); /* 120% */
+  color: var(--color-text-primary);
+}
+
+.page-login__subtitle {
+  margin: 0;
+  font-size: var(--font-size-body); /* 16px */
+  line-height: var(--line-height-body); /* 1.5 */
+  color: var(--color-text-muted);
+}
+
+/* Jarak antarkelompok form = 24px (lebih besar dari 8px di dalam FormField) */
+.page-login__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+/* Target sentuh tombol mata >= 44px agar mudah ditekan ibu jari */
+.page-login__toggle-pw {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.page-login__toggle-pw:focus-visible {
+  outline: var(--border-width-medium) solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+.page-login__toggle-pw:disabled {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+}
+
+.page-login__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16); /* Jarak antar tombol lazim 16px */
+  margin-top: var(--space-4);
+}
+
+.page-login__feedback {
+  margin: 0;
+  padding: var(--space-12) var(--space-16);
+  border-radius: var(--radius-md);
+  background-color: var(--color-status-info-bg);
+  color: var(--color-status-info-text);
+  font-size: var(--font-size-supporting);
+  line-height: var(--line-height-body);
+}
+
+.page-login__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  padding-top: var(--space-4);
+}
+
+.page-login__help-link {
+  min-height: 44px; /* Area sentuh nyaman meski tampilan teks ringkas */
+  padding: var(--space-8) var(--space-4);
+  border: 0;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-supporting);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .page-login__help-link:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+.page-login__help-link:focus-visible {
+  outline: var(--border-width-medium) solid var(--color-focus-ring);
+  border-radius: var(--radius-sm);
+}
+
+.page-login__dot {
+  color: var(--color-text-muted);
+}
+
+/* Panel simulasi state (opsional, bisa dihapus sebelum rilis produksi) */
+.page-login__demo-bar {
+  margin-top: var(--space-16);
+  padding: var(--space-12);
+  border: var(--border-width-thin) dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-page);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+.page-login__demo-label {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+}
+
+.page-login__demo-actions {
+  display: flex;
+  gap: var(--space-8);
+}
+
+.page-login__demo-btn {
+  padding: var(--space-4) var(--space-12);
+  border: var(--border-width-thin) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+}
+
+.page-login__demo-btn:focus-visible {
+  outline: var(--border-width-medium) solid var(--color-focus-ring);
+}

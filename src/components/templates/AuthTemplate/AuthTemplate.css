@@ -1,0 +1,118 @@
+/* Mobile-First Base (< 840px): Header lengkung atas + konten formulir di bawah */
+.tpl-auth {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg-surface);
+}
+
+.tpl-auth__brand {
+  background: var(--gradient-header);
+  color: var(--color-on-primary);
+  padding-top: max(var(--space-32), env(safe-area-inset-top));
+  padding-bottom: var(--space-32);
+  padding-inline: var(--grid-margin);
+  border-bottom-left-radius: 28px;
+  border-bottom-right-radius: 28px;
+  text-align: center;
+}
+
+.tpl-auth__brand-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.tpl-auth__logo-wrap {
+  width: 84px;
+  height: 84px;
+  margin-bottom: var(--space-8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tpl-auth__logo-img,
+.tpl-auth__emblem-svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.tpl-auth__brand-subtitle {
+  margin: 0;
+  font-size: var(--font-size-supporting);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.95;
+}
+
+.tpl-auth__brand-title {
+  margin: 0;
+  font-size: var(--font-size-section-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-page-title);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.tpl-auth__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: var(--space-32);
+  padding-bottom: max(var(--space-32), env(safe-area-inset-bottom));
+  padding-inline: var(--grid-margin);
+}
+
+.tpl-auth__card {
+  width: 100%;
+  max-width: 420px; /* Grid fixed untuk formulir agar mata tidak menempuh jarak terlalu jauh */
+}
+
+/* Breakpoint Desktop (>= 840px): Berubah menjadi 2 kolom (panel kiri merah + formulir kanan) */
+@media (min-width: 840px) {
+  .tpl-auth {
+    display: grid;
+    grid-template-columns: minmax(340px, 44%) 1fr;
+    background-color: var(--color-bg-page);
+  }
+
+  .tpl-auth__brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-48);
+    border-radius: 0;
+  }
+
+  .tpl-auth__logo-wrap {
+    width: 120px;
+    height: 120px;
+    margin-bottom: var(--space-16);
+  }
+
+  .tpl-auth__brand-subtitle {
+    font-size: var(--font-size-body);
+  }
+
+  .tpl-auth__brand-title {
+    font-size: var(--font-size-page-title);
+  }
+
+  .tpl-auth__main {
+    justify-content: center;
+    padding: var(--space-48);
+  }
+
+  .tpl-auth__card {
+    background-color: var(--color-bg-surface);
+    padding: var(--space-32);
+    border-radius: var(--radius-lg);
+    border: var(--border-width-thin) solid var(--color-border);
+    box-shadow: var(--elevation-2);
+  }
+}

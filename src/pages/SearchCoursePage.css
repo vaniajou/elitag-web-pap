@@ -1,0 +1,96 @@
+.page-search {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+.page-search__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.page-search__title {
+  margin: 0;
+  font-size: var(--font-size-page-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-page-title);
+  color: var(--color-text-primary);
+}
+
+.page-search__controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.page-search__bar {
+  width: 100%;
+}
+
+/* Panel simulasi 4 state */
+.page-search__demo-bar {
+  margin-top: var(--space-16);
+  padding: var(--space-12) var(--space-16);
+  border: var(--border-width-thin) dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-surface);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+
+.page-search__demo-label {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+}
+
+.page-search__demo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.page-search__demo-btn {
+  min-height: 36px;
+  padding: var(--space-4) var(--space-12);
+  border: var(--border-width-thin) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-page);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+}
+
+.page-search__demo-btn--active {
+  background-color: var(--color-primary-bg);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.page-search__demo-btn:focus-visible {
+  outline: var(--border-width-medium) solid var(--color-focus-ring);
+}
+
+/* Breakpoint Desktop (>= 840px): Kolom cari dan filter sejajar */
+@media (min-width: 840px) {
+  .page-search {
+    gap: var(--space-32);
+  }
+
+  .page-search__controls {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-16);
+  }
+
+  .page-search__bar {
+    max-width: 480px;
+  }
+}

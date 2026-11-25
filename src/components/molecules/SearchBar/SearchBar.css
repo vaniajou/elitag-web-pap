@@ -1,0 +1,54 @@
+.mol-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.mol-search__icon {
+  position: absolute;
+  left: var(--space-16);
+  display: inline-flex;
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.mol-search__input {
+  padding-left: calc(var(--space-16) + 20px + var(--space-12));
+  border-radius: var(--radius-lg);
+}
+
+.mol-search__input--has-clear {
+  padding-right: var(--touch-target-min);
+}
+
+/* Hilangkan tombol silang bawaan WebKit agar konsisten dengan tombol clear kustom */
+.mol-search__input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+.mol-search__clear {
+  position: absolute;
+  right: var(--space-4);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .mol-search__clear:hover {
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-page);
+  }
+}
+
+.mol-search__clear:focus-visible {
+  outline: var(--border-width-medium) solid var(--color-focus-ring);
+}

@@ -1,0 +1,59 @@
+/* Reset dasar dan pengaturan fondasi mobile-first */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%; /* Hormati pengaturan ukuran huruf browser pengguna */
+  -webkit-text-size-adjust: 100%;
+  scrollbar-gutter: stable;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-page);
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* Wadah utama yang mengikuti grid & batas lebar maksimum */
+.elitag-container {
+  width: 100%;
+  max-width: calc(var(--container-max-width) + (var(--grid-margin) * 2));
+  margin-inline: auto;
+  padding-inline: var(--grid-margin);
+}
+
+/* Utilitas teks hanya untuk pembaca layar (aksesibilitas) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

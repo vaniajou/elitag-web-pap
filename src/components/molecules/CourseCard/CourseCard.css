@@ -1,0 +1,87 @@
+.mol-course-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-16);
+  width: 100%;
+  min-height: 88px;
+  padding: var(--space-16);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-surface);
+  box-shadow: var(--elevation-1);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-normal),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.mol-course-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0; /* Mencegah teks panjang memecah tata letak flex */
+}
+
+.mol-course-card__meta {
+  margin-bottom: var(--space-4);
+}
+
+.mol-course-card__title {
+  margin: 0;
+  font-size: var(--font-size-card-title);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-heading);
+  color: var(--color-text-primary);
+}
+
+.mol-course-card__lecturer {
+  margin: 0;
+  font-size: var(--font-size-supporting);
+  line-height: var(--line-height-body);
+  color: var(--color-text-muted);
+}
+
+.mol-course-card__chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+@media (hover: hover) {
+  .mol-course-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--elevation-2);
+  }
+
+  .mol-course-card:hover .mol-course-card__chevron {
+    color: var(--color-primary);
+    transform: translateX(2px);
+  }
+}
+
+.mol-course-card:active {
+  box-shadow: none;
+  transform: translateY(1px);
+}
+
+.mol-course-card:focus-visible {
+  outline: var(--border-width-medium) solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+@media (min-width: 840px) {
+  .mol-course-card {
+    padding: var(--space-24);
+  }
+}

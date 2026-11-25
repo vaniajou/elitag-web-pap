@@ -1,0 +1,178 @@
+/* ==========================================================================
+   ELITAG DESIGN TOKENS — v1.0
+   Sumber: 1. Sampul dan Catatan.pdf & 3. Design System.pdf
+   Aturan: Penamaan berbasis tugas, satuan tipografi relatif (rem),
+           pendekatan mobile-first (min-width).
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------------
+     1. WARNA — Utama (Penamaan Berbasis Tugas)
+     Catatan: #B40000 dipakai sesuai Design System & audit kontras 7.14:1.
+              Cocokkan dengan catatan Sampul (#BA1A1A) di changelog kelompok.
+     ------------------------------------------------------------------------ */
+  --color-primary: #b40000;          /* Figma: warna-utama/dasar */
+  --color-primary-bg: #fee8e8;       /* Figma: warna-utama/latar */
+  --color-primary-hover: #960000;    /* Turunan gelap untuk hover desktop */
+  --color-primary-pressed: #7a0000;  /* Figma: warna-utama/tekan */
+  --color-on-primary: #ffffff;       /* Teks di atas warna-utama/dasar (7.14:1) */
+
+  /* Gradien khusus lengkungan header layar Masuk (E01) */
+  --gradient-header: linear-gradient(135deg, #c1121f 0%, #800000 100%);
+
+  /* ------------------------------------------------------------------------
+     2. WARNA — Teks & Netral (Abu-Abu Berona, menghindari #000000 murni)
+     ------------------------------------------------------------------------ */
+  --color-text-primary: #14101e;     /* Figma: teks/utama */
+  --color-text-muted: #4a4458;       /* Figma: teks/pendukung (VERIFIKASI FIGMA) */
+  --color-text-disabled: #7d778a;    /* Teks keadaan nonaktif */
+
+  --color-border: #e0e2e9;           /* Figma: garis/pemisah (VERIFIKASI FIGMA) */
+  --color-border-strong: #c2c5d1;    /* Garis tepi input saat hover */
+
+  --color-bg-page: #f8f9fa;          /* Figma: latar/halaman */
+  --color-bg-surface: #ffffff;       /* Figma: latar/kartu */
+  --color-bg-disabled: #eceef2;      /* Latar komponen nonaktif */
+  --color-bg-skeleton: #e4e6ed;      /* Latar dasar skeleton screen */
+  --color-bg-skeleton-shine: #f1f2f6;
+
+  /* ------------------------------------------------------------------------
+     3. WARNA — Status (Aksesibilitas WCAG 2.2 AA)
+     Menyediakan warna inti (dari Design System) + pasangan latar & teks
+     yang aman dibaca (>= 4.5:1 untuk teks biasa).
+     ------------------------------------------------------------------------ */
+  --color-status-success: #16a34a;        /* Figma: status/berhasil */
+  --color-status-success-bg: #dcfce7;
+  --color-status-success-text: #15803d;
+
+  --color-status-warning: #d97706;        /* Figma: status/peringatan */
+  --color-status-warning-bg: #fef3c7;
+  --color-status-warning-text: #b45309;
+
+  --color-status-error: #dc2626;          /* Figma: status/gagal (4.83:1 di putih) */
+  --color-status-error-bg: #fee2e2;
+  --color-status-error-text: #b91c1c;
+
+  --color-status-info: #2563eb;           /* Figma: status/info */
+  --color-status-info-bg: #dbeafe;
+  --color-status-info-text: #1d4ed8;
+
+  /* Penanda fokus keyboard (WCAG 2.4.7 AA) */
+  --color-focus-ring: #2563eb;
+
+  /* ------------------------------------------------------------------------
+     4. TIPOGRAFI — Satu Typeface (Inter), Satuan Relatif (rem)
+     1rem = 16px (bawaan browser). Makin besar ukuran, makin rapat line-height.
+     ------------------------------------------------------------------------ */
+  --font-family-base: 'Inter', system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, sans-serif;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Skala Ukuran (6 ukuran, VERIFIKASI FIGMA selain 24px & 16px) */
+  --font-size-page-title: 1.5rem;      /* 24px — judul-halaman (Figma) */
+  --font-size-section-title: 1.25rem;  /* 20px — judul-bagian */
+  --font-size-card-title: 1.125rem;    /* 18px — judul-kartu */
+  --font-size-body: 1rem;              /* 16px — teks-isi (Figma) */
+  --font-size-supporting: 0.875rem;    /* 14px — teks-pendukung & label */
+  --font-size-caption: 0.75rem;        /* 12px — keterangan kecil / badge */
+
+  /* Rasio Tinggi Baris (tanpa satuan agar fleksibel mengikuti ukuran huruf) */
+  --line-height-page-title: 1.2;       /* 120% (Figma) */
+  --line-height-heading: 1.3;
+  --line-height-body: 1.5;             /* 1.5 (Figma) */
+  --line-height-label: 1.25;
+
+  /* Batas panjang baris untuk keterbacaan (45–75 karakter di desktop) */
+  --measure-readable: 65ch;
+
+  /* ------------------------------------------------------------------------
+     5. SKALA SPASI — Non-linear (Basis 8px, Mobile/Komponen mulai 4px)
+     Sumber: 3. Design System.pdf (Component: 4–16px, Layout: 24–48px)
+     ------------------------------------------------------------------------ */
+  --space-4: 0.25rem;   /* 4px  — Component */
+  --space-8: 0.5rem;    /* 8px  — Component */
+  --space-12: 0.75rem;  /* 12px — Component */
+  --space-16: 1rem;     /* 16px — Component */
+  --space-24: 1.5rem;   /* 24px — Layout */
+  --space-32: 2rem;     /* 32px — Layout */
+  --space-48: 3rem;     /* 48px — Layout */
+
+  /* Alias spasi berbasis tugas (Soft Grid) */
+  --space-inline-xs: var(--space-4);
+  --space-inline-sm: var(--space-8);
+  --space-inline-md: var(--space-12);
+  --space-component-pad: var(--space-16);
+  --space-group-gap: var(--space-24);
+  --space-section-gap: var(--space-32);
+  --space-page-gap: var(--space-48);
+
+  /* ------------------------------------------------------------------------
+     6. RADIUS SUDUT, GARIS, OPASITAS & TARGET SENTUH
+     ------------------------------------------------------------------------ */
+  --radius-sm: 4px;       /* VERIFIKASI FIGMA */
+  --radius-md: 8px;       /* Tombol, input, kartu — VERIFIKASI FIGMA */
+  --radius-lg: 12px;      /* Kartu besar / dialog — VERIFIKASI FIGMA */
+  --radius-full: 9999px;  /* Badge / pil */
+
+  --border-width-thin: 1px;
+  --border-width-medium: 2px;
+
+  --opacity-disabled: 0.6;
+
+  /* Ukuran target sentuh (WCAG 2.2 AA min 24px, praktik nyaman 44–48px) */
+  --touch-target-min: 48px;
+
+  /* ------------------------------------------------------------------------
+     7. ELEVASI — 5 Tingkat Bayangan (blur = 2 × offset, Pertemuan 6)
+     VERIFIKASI FIGMA jika memakai nilai opasitas/offset khusus
+     ------------------------------------------------------------------------ */
+  --elevation-1: 0 4px 8px rgba(20, 16, 30, 0.12);   /* Tombol */
+  --elevation-2: 0 8px 16px rgba(20, 16, 30, 0.12);  /* Kartu */
+  --elevation-3: 0 12px 24px rgba(20, 16, 30, 0.14); /* Dropdown */
+  --elevation-4: 0 16px 32px rgba(20, 16, 30, 0.16); /* Panel samping */
+  --elevation-5: 0 24px 48px rgba(20, 16, 30, 0.2);  /* Dialog */
+
+  /* ------------------------------------------------------------------------
+     8. LAYOUT GRID & BREAKPOINT (Mobile-First: Default = Compact < 600px)
+     Sumber: 3. Design System.pdf (Mobile: 390px, 4 col, margin 24, gutter 12)
+     ------------------------------------------------------------------------ */
+  --grid-columns: 4;
+  --grid-margin: 24px;
+  --grid-gutter: 12px;
+  --container-max-width: 1200px; /* 1440px - (2 × 120px margin) */
+
+  /* Transisi interaksi (ancar-ancar NN/g: pressed 100–150ms, hover 150–200ms) */
+  --transition-fast: 120ms ease;
+  --transition-normal: 180ms ease;
+}
+
+/* Breakpoint Medium: Tablet kecil / ponsel lanskap (>= 600px) */
+@media (min-width: 600px) {
+  :root {
+    --grid-columns: 8;
+    --grid-margin: 24px;
+    --grid-gutter: 16px;
+  }
+}
+
+/* Breakpoint Expanded: Tablet besar / Desktop awal (>= 840px, aturan ETS) */
+@media (min-width: 840px) {
+  :root {
+    --grid-columns: 12;
+    --grid-margin: 32px;
+    --grid-gutter: 24px;
+  }
+}
+
+/* Breakpoint Large: Desktop lebar (>= 1200px, sesuai frame 1440px Figma) */
+@media (min-width: 1200px) {
+  :root {
+    --grid-columns: 12;
+    --grid-margin: 120px;
+    --grid-gutter: 24px;
+  }
+}

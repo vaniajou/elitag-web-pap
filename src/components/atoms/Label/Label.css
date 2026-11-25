@@ -1,0 +1,14 @@
+.atom-label {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  font-size: var(--font-size-supporting);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-label);
+  color: var(--color-text-primary);
+}
+
+.atom-label__required {
+  color: var(--color-status-error);
+  font-weight: var(--font-weight-semibold);
+}
