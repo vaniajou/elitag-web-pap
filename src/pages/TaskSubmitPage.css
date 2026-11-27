@@ -1,0 +1,419 @@
+/* Mobile-first (< 840px) */
+.page-submit {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+.page-submit__layout,
+.page-submit__main,
+.page-submit__side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+/* Notifikasi Konfirmasi Berhasil */
+.page-submit__success {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-12);
+  padding: var(--space-16);
+  border: var(--border-width-thin) solid var(--color-status-success);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-status-success-bg);
+  color: var(--color-status-success-text);
+}
+
+.page-submit__success-icon {
+  display: inline-flex;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.page-submit__success-text {
+  margin: 0;
+  font-size: var(--font-size-supporting);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-body);
+}
+
+/* Kartu Umum */
+.page-submit__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  padding: var(--space-16);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-surface);
+  box-shadow: var(--elevation-1);
+}
+
+.page-submit__hero {
+  gap: var(--space-8);
+  box-shadow: var(--elevation-2);
+}
+
+.page-submit__course {
+  margin: 0;
+  font-size: var(--font-size-supporting);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+}
+
+.page-submit__title {
+  margin: 0;
+  font-size: var(--font-size-page-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-page-title);
+  color: var(--color-text-primary);
+}
+
+.page-submit__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  margin-top: var(--space-4);
+}
+
+.page-submit__due {
+  margin: var(--space-4) 0 0;
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+}
+
+/* Kartu Nilai & Umpan Balik Dosen */
+.page-submit__grade-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding: var(--space-16);
+  border: var(--border-width-thin) solid var(--color-status-success);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-status-success-bg);
+}
+
+.page-submit__grade-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-16);
+}
+
+.page-submit__grade-date {
+  margin: var(--space-4) 0 0;
+  font-size: var(--font-size-caption);
+  color: var(--color-text-muted);
+}
+
+.page-submit__score-pill {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  padding: var(--space-8) var(--space-16);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-surface);
+  border: var(--border-width-thin) solid var(--color-status-success);
+  flex-shrink: 0;
+}
+
+.page-submit__score-num {
+  font-size: var(--font-size-page-title);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  color: var(--color-status-success-text);
+}
+
+.page-submit__score-max {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+}
+
+.page-submit__feedback-box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-12) var(--space-16);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-surface);
+}
+
+.page-submit__feedback-label {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.page-submit__feedback-text {
+  margin: 0;
+  max-width: var(--measure-readable);
+  font-size: var(--font-size-supporting);
+  line-height: var(--line-height-body);
+  color: var(--color-text-primary);
+}
+
+/* Instruksi & Ketentuan Berkas */
+.page-submit__section-title {
+  margin: 0;
+  font-size: var(--font-size-card-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  color: var(--color-text-primary);
+}
+
+.page-submit__desc {
+  margin: 0;
+  max-width: var(--measure-readable);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  color: var(--color-text-primary);
+}
+
+.page-submit__steps {
+  margin: 0;
+  padding-left: var(--space-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.page-submit__step-item {
+  max-width: var(--measure-readable);
+  font-size: var(--font-size-supporting);
+  line-height: var(--line-height-body);
+  color: var(--color-text-muted);
+}
+
+.page-submit__spec-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  padding: var(--space-12);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-page);
+  font-size: var(--font-size-supporting);
+}
+
+.page-submit__spec-label {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.page-submit__spec-value {
+  color: var(--color-text-muted);
+}
+
+/* Formulir Pengumpulan */
+.page-submit__form {
+  gap: var(--space-16);
+}
+
+.page-submit__note-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.page-submit__textarea {
+  display: block;
+  width: 100%;
+  min-height: 96px;
+  padding: var(--space-12) var(--space-16);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  resize: vertical;
+  transition: border-color var(--transition-normal);
+}
+
+.page-submit__textarea::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.85;
+}
+
+.page-submit__textarea:focus-visible {
+  outline: var(--border-width-medium) solid var(--color-focus-ring);
+  outline-offset: 1px;
+  border-color: var(--color-focus-ring);
+}
+
+.page-submit__textarea:disabled {
+  background-color: var(--color-bg-disabled);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.page-submit__locked-note {
+  margin: 0;
+  padding: var(--space-12);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-page);
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+}
+
+.page-submit__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  padding-top: var(--space-4);
+}
+
+/* Riwayat Unggahan */
+.page-submit__history-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.page-submit__history-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-12);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-page);
+}
+
+.page-submit__history-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  margin-bottom: var(--space-4);
+}
+
+.page-submit__history-size {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+}
+
+.page-submit__history-file {
+  margin: 0;
+  font-size: var(--font-size-supporting);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  overflow-wrap: anywhere;
+}
+
+.page-submit__history-time {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  color: var(--color-text-muted);
+}
+
+.page-submit__history-note {
+  margin: var(--space-4) 0 0;
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-body);
+  color: var(--color-text-muted);
+}
+
+.page-submit__history-empty {
+  margin: 0;
+  font-size: var(--font-size-supporting);
+  line-height: var(--line-height-body);
+  color: var(--color-text-muted);
+}
+
+/* Panel simulasi 4 state */
+.page-submit__demo-bar {
+  margin-top: var(--space-8);
+  padding: var(--space-12) var(--space-16);
+  border: var(--border-width-thin) dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-surface);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+
+.page-submit__demo-label {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+}
+
+.page-submit__demo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.page-submit__demo-btn {
+  min-height: 36px;
+  padding: var(--space-4) var(--space-12);
+  border: var(--border-width-thin) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-page);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+}
+
+.page-submit__demo-btn--active {
+  background-color: var(--color-primary-bg);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.page-submit__demo-btn:focus-visible {
+  outline: var(--border-width-medium) solid var(--color-focus-ring);
+}
+
+/* Breakpoint Medium (>= 600px) */
+@media (min-width: 600px) {
+  .page-submit__actions {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+/* Breakpoint Desktop (>= 840px): 2 kolom (Detail & Unggah kiri, Riwayat kanan sticky) */
+@media (min-width: 840px) {
+  .page-submit {
+    gap: var(--space-32);
+  }
+
+  .page-submit__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    align-items: start;
+    gap: var(--space-24);
+  }
+
+  .page-submit__main {
+    gap: var(--space-24);
+  }
+
+  .page-submit__side {
+    position: sticky;
+    top: var(--space-32);
+  }
+
+  .page-submit__card,
+  .page-submit__grade-card {
+    padding: var(--space-24);
+  }
+
+  .page-submit__section-title {
+    font-size: var(--font-size-section-title);
+  }
+}

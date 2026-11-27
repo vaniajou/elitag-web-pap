@@ -4,6 +4,15 @@ export const MOCK_STUDENT = {
   email: 'raka.pratama@contoh.untag-sby.ac.id',
   program: 'Teknik Informatika',
   semester: 'Ganjil 2026/2027',
+  phone: '0812-3456-7890',
+  academicStats: {
+    gpa: '3,84',
+    completedCredits: 84,
+    totalCredits: 144,
+    averageQuizScore: 88,
+    completedTasks: 12,
+    attendanceRate: 96,
+  },
 };
 
 export const MOCK_URGENT_DEADLINE = {
@@ -637,5 +646,199 @@ export const MOCK_TASKS = [
     description:
       'Buat dua persona mahasiswa aktif beserta skenario penggunaan aplikasi belajar daring.',
     allowedFormats: 'PDF (maks. 5 MB)',
+  },
+];
+
+/* Data utas forum diskusi kelas untuk E11 Forum Diskusi */
+export const MOCK_DISCUSSIONS = {
+  'mk-pw-01': [
+    {
+      id: 'disc-pw-01',
+      topicTag: 'Pertemuan 1',
+      title: 'Perbedaan Web Statis dan Dinamis',
+      authorName: 'Budi Santoso, M.Kom.',
+      authorRole: 'Dosen',
+      postedAt: '2 jam yang lalu',
+      content:
+        'Silakan berikan pendapat dan contoh nyata perbedaan antara website statis dan dinamis di bawah ini.',
+      replies: [
+        {
+          id: 'rep-pw-01',
+          authorName: 'Nadia Kusuma Putri',
+          authorRole: 'Mahasiswa',
+          postedAt: '1 jam yang lalu',
+          content:
+            'Web statis isinya tetap seperti web profil perusahaan, sedangkan web dinamis berubah sesuai interaksi pengguna.',
+        },
+        {
+          id: 'rep-pw-02',
+          authorName: 'Dimas Saputra Pratama',
+          authorRole: 'Mahasiswa',
+          postedAt: '30 menit yang lalu',
+          content:
+            'Setuju, contoh lainnya adalah portal ELITAG ini yang menampilkan jadwal dan tugas berbeda untuk tiap mahasiswa.',
+        },
+      ],
+    },
+    {
+      id: 'disc-pw-02',
+      topicTag: 'Pertemuan 2',
+      title: 'Kapan Menggunakan Elemen <section> vs <article>?',
+      authorName: 'Raka Pratama Wijaya',
+      authorRole: 'Mahasiswa',
+      postedAt: 'Kemarin · 19.15 WIB',
+      content:
+        'Pada tugas struktur HTML semantik, apakah kartu mata kuliah di Beranda lebih tepat memakai <article> atau <section>?',
+      replies: [
+        {
+          id: 'rep-pw-03',
+          authorName: 'Budi Santoso, M.Kom.',
+          authorRole: 'Dosen',
+          postedAt: 'Kemarin · 20.05 WIB',
+          content:
+            'Gunakan <article> untuk satu konten mandiri seperti kartu tugas atau utas diskusi, sedangkan <section> untuk mengelompokkan satu bagian tematik yang punya heading.',
+        },
+      ],
+    },
+    {
+      id: 'disc-pw-03',
+      topicTag: 'Pertemuan 3',
+      title: 'Tips Mengatur Breakpoint Mobile-First di CSS',
+      authorName: 'Budi Santoso, M.Kom.',
+      authorRole: 'Dosen',
+      postedAt: '3 hari yang lalu',
+      content:
+        'Apakah ada kendala saat menerjemahkan tata letak 1 kolom di ponsel menjadi 2 kolom di desktop menggunakan @media (min-width: 840px)? Bagikan kendala kalian di sini.',
+      replies: [],
+    },
+  ],
+  default: [
+    {
+      id: 'disc-def-01',
+      topicTag: 'Pertemuan 1',
+      title: 'Diskusi Pengantar & Kontrak Perkuliahan',
+      authorName: 'Dosen Pengampu',
+      authorRole: 'Dosen',
+      postedAt: '1 hari yang lalu',
+      content:
+        'Silakan ajukan pertanyaan terkait rencana pembelajaran semester, pembagian kelompok, atau ketentuan penilaian mata kuliah ini.',
+      replies: [
+        {
+          id: 'rep-def-01',
+          authorName: 'Raka Pratama Wijaya',
+          authorRole: 'Mahasiswa',
+          postedAt: '18 jam yang lalu',
+          content:
+            'Terima kasih, apakah pengumpulan tugas mingguan dilakukan per individu atau per kelompok?',
+        },
+      ],
+    },
+  ],
+};
+
+/* Data rekap nilai & umpan balik dosen untuk E12 Nilai & Umpan Balik */
+export const MOCK_GRADES = [
+  {
+    id: 'grade-pw-01',
+    courseId: 'mk-pw-01',
+    courseCode: 'IF201',
+    courseName: 'Pemrograman Web',
+    semester: 'Semester Ganjil',
+    category: 'Tugas',
+    title: 'Tugas 1: Analisis UI/UX',
+    weight: 20,
+    score: 90,
+    maxScore: 100,
+    status: 'Dinilai',
+    gradedAt: 'Dinilai 1 Nov 2026',
+    graderName: 'Budi Santoso, M.Kom.',
+    feedback:
+      'Analisis hirarki visual dan kontras warna sudah sangat teliti serta memenuhi standar WCAG.',
+  },
+  {
+    id: 'grade-pw-02',
+    courseId: 'mk-pw-01',
+    courseCode: 'IF201',
+    courseName: 'Pemrograman Web',
+    semester: 'Semester Ganjil',
+    category: 'Kuis',
+    title: 'Kuis 1: HTML & CSS Dasar',
+    weight: 15,
+    score: 87,
+    maxScore: 100,
+    status: 'Dinilai',
+    gradedAt: 'Dinilai otomatis 25 Okt 2026',
+    graderName: 'Sistem ELITAG',
+    feedback:
+      'Pemahaman struktur elemen HTML sudah baik. Tingkatkan latihan pada bagian tata letak CSS Grid.',
+  },
+  {
+    id: 'grade-pw-03',
+    courseId: 'mk-pw-01',
+    courseCode: 'IF201',
+    courseName: 'Pemrograman Web',
+    semester: 'Semester Ganjil',
+    category: 'UTS/UAS',
+    title: 'ETS: Implementasi Antarmuka Responsif',
+    weight: 30,
+    score: null,
+    maxScore: 100,
+    status: 'Menunggu Penilaian',
+    gradedAt: 'Dikumpulkan 18 Nov 2026',
+    graderName: 'Budi Santoso, M.Kom.',
+    feedback: '',
+  },
+  {
+    id: 'grade-imk-01',
+    courseId: 'mk-imk-01',
+    courseCode: 'IF205',
+    courseName: 'Interaksi Manusia dan Komputer',
+    semester: 'Semester Ganjil',
+    category: 'Tugas',
+    title: 'Tugas 1: Persona & Skenario Pengguna',
+    weight: 25,
+    score: 92,
+    maxScore: 100,
+    status: 'Dinilai',
+    gradedAt: 'Dinilai 15 Nov 2026',
+    graderName: 'Siti Rahmawati, S.Kom., M.T.',
+    feedback:
+      'Analisis kebutuhan mahasiswa dan alur tugas sudah runtut dan jelas. Pertahankan ketajaman pada bagian kendala perangkat mobile.',
+  },
+  {
+    id: 'grade-imk-02',
+    courseId: 'mk-imk-01',
+    courseCode: 'IF205',
+    courseName: 'Interaksi Manusia dan Komputer',
+    semester: 'Semester Ganjil',
+    category: 'UTS/UAS',
+    title: 'ETS: Audit Heuristik Layanan Kampus',
+    weight: 35,
+    score: 84,
+    maxScore: 100,
+    status: 'Dinilai',
+    gradedAt: 'Dinilai 10 Nov 2026',
+    graderName: 'Siti Rahmawati, S.Kom., M.T.',
+    feedback:
+      'Temuan heuristik sudah lengkap. Perlu tambahan prioritas perbaikan berdasarkan tingkat keparahan.',
+  },
+];
+
+/* Data topik bantuan & panduan untuk halaman Profil (E10) */
+export const MOCK_HELP_TOPICS = [
+  {
+    id: 'help-01',
+    question: 'Bagaimana cara mengumpulkan tugas atau mengunggah file?',
+    answer: 'Buka halaman mata kuliah terkait, pilih aktivitas bertanda Tugas, lalu unggah file sesuai format yang diminta sebelum batas waktu berakhir.',
+  },
+  {
+    id: 'help-02',
+    question: 'Mengapa nilai kuis saya belum muncul di halaman Nilai?',
+    answer: 'Nilai kuis pilihan ganda muncul otomatis setelah selesai mengerjakan, sedangkan soal esai menunggu penilaian manual dari dosen pengampu.',
+  },
+  {
+    id: 'help-03',
+    question: 'Bagaimana cara memperbarui foto atau informasi profil akun?',
+    answer: 'Informasi akademik utama (NIM, Program Studi, Email) tersinkronisasi langsung dengan sistem akademik kampus.',
   },
 ];

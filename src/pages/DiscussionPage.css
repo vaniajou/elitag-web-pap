@@ -1,0 +1,422 @@
+/* Mobile-first (< 840px) — Menggunakan token dari tokens.css */
+.page-forum {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+.page-forum__top-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+
+.page-forum__heading-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.page-forum__course-ref {
+  margin: 0;
+  padding-left: calc(44px + var(--space-12));
+  font-size: var(--font-size-supporting);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+}
+
+.page-forum__notice {
+  margin: 0;
+  padding: var(--space-12) var(--space-16);
+  border: var(--border-width-thin) solid var(--color-status-success);
+  border-radius: var(--radius-md);
+  background-color: var(--color-status-success-bg);
+  color: var(--color-status-success-text);
+  font-size: var(--font-size-supporting);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Form Buat Topik Baru */
+.page-forum__composer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding: var(--space-16);
+  border: var(--border-width-thin) solid var(--color-primary);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-surface);
+  box-shadow: var(--elevation-2);
+}
+
+.page-forum__composer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-16);
+}
+
+.page-forum__composer-actions,
+.page-forum__reply-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+/* Susunan Konten */
+.page-forum__layout,
+.page-forum__detail,
+.page-forum__thread-list,
+.page-forum__thread-items,
+.page-forum__replies-section,
+.page-forum__skeleton-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.page-forum__list-heading,
+.page-forum__section-title {
+  margin: 0;
+  font-size: var(--font-size-card-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  color: var(--color-text-primary);
+}
+
+/* Tombol Pilih Utas */
+.page-forum__thread-btn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  width: 100%;
+  padding: var(--space-16);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-surface);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.page-forum__thread-btn--active {
+  border-width: var(--border-width-medium);
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-bg);
+}
+
+@media (hover: hover) {
+  .page-forum__thread-btn:hover:not(.page-forum__thread-btn--active) {
+    border-color: var(--color-border-strong);
+    box-shadow: var(--elevation-1);
+  }
+}
+
+.page-forum__thread-btn:focus-visible {
+  outline: var(--border-width-medium) solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+.page-forum__thread-btn-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  width: 100%;
+}
+
+.page-forum__reply-count {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+}
+
+.page-forum__thread-btn-title {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  color: var(--color-text-primary);
+}
+
+.page-forum__thread-btn-meta {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-muted);
+}
+
+/* Kartu Utas Utama */
+.page-forum__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  padding: var(--space-16);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-surface);
+  box-shadow: var(--elevation-1);
+}
+
+.page-forum__post {
+  box-shadow: var(--elevation-2);
+}
+
+.page-forum__post-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.page-forum__post-title {
+  margin: 0;
+  font-size: var(--font-size-page-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-page-title);
+  color: var(--color-text-primary);
+}
+
+.page-forum__author-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.page-forum__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-page);
+  border: var(--border-width-thin) solid var(--color-border-strong);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  flex-shrink: 0;
+}
+
+.page-forum__avatar--dosen {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.page-forum__avatar--sm {
+  width: 34px;
+  height: 34px;
+}
+
+.page-forum__author-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.page-forum__author-name {
+  font-size: var(--font-size-supporting);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+.page-forum__author-time {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-muted);
+}
+
+.page-forum__post-body {
+  margin: var(--space-4) 0 0;
+  max-width: var(--measure-readable);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  color: var(--color-text-primary);
+}
+
+/* Daftar Balasan Komentar */
+.page-forum__replies-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.page-forum__reply-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  padding: var(--space-16);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-surface);
+}
+
+.page-forum__reply-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+.page-forum__reply-body {
+  margin: 0;
+  max-width: var(--measure-readable);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  color: var(--color-text-primary);
+}
+
+.page-forum__replies-empty {
+  margin: 0;
+  padding: var(--space-16);
+  border: var(--border-width-thin) dashed var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-surface);
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+}
+
+/* Textarea & Validasi */
+.page-forum__textarea-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.page-forum__textarea {
+  display: block;
+  width: 100%;
+  min-height: 96px;
+  padding: var(--space-12) var(--space-16);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  resize: vertical;
+  transition: border-color var(--transition-normal);
+}
+
+.page-forum__textarea::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.85;
+}
+
+.page-forum__textarea:focus-visible {
+  outline: var(--border-width-medium) solid var(--color-focus-ring);
+  outline-offset: 1px;
+  border-color: var(--color-focus-ring);
+}
+
+.page-forum__textarea--error {
+  border-width: var(--border-width-medium);
+  border-color: var(--color-status-error);
+  background-color: var(--color-status-error-bg);
+}
+
+.page-forum__field-error {
+  margin: 0;
+  font-size: var(--font-size-supporting);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-status-error-text);
+}
+
+/* Panel simulasi 4 state */
+.page-forum__demo-bar {
+  margin-top: var(--space-8);
+  padding: var(--space-12) var(--space-16);
+  border: var(--border-width-thin) dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-surface);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+
+.page-forum__demo-label {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+}
+
+.page-forum__demo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.page-forum__demo-btn {
+  min-height: 36px;
+  padding: var(--space-4) var(--space-12);
+  border: var(--border-width-thin) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-page);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+}
+
+.page-forum__demo-btn--active {
+  background-color: var(--color-primary-bg);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.page-forum__demo-btn:focus-visible {
+  outline: var(--border-width-medium) solid var(--color-focus-ring);
+}
+
+/* Breakpoint Medium (>= 600px) */
+@media (min-width: 600px) {
+  .page-forum__composer-grid {
+    grid-template-columns: 2fr 1fr;
+  }
+
+  .page-forum__composer-actions,
+  .page-forum__reply-actions {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+/* Breakpoint Desktop (>= 840px): 2 kolom (Daftar Topik kiri, Detail & Balasan kanan) */
+@media (min-width: 840px) {
+  .page-forum {
+    gap: var(--space-32);
+  }
+
+  .page-forum__layout {
+    display: grid;
+    grid-template-columns: 320px minmax(0, 1fr);
+    align-items: start;
+    gap: var(--space-24);
+  }
+
+  .page-forum__thread-list {
+    position: sticky;
+    top: var(--space-32);
+  }
+
+  .page-forum__card,
+  .page-forum__composer,
+  .page-forum__reply-card {
+    padding: var(--space-24);
+  }
+
+  .page-forum__list-heading,
+  .page-forum__section-title {
+    font-size: var(--font-size-section-title);
+  }
+}

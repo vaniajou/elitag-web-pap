@@ -1,0 +1,314 @@
+/* Mobile-first (< 840px) — Menggunakan token dari tokens.css */
+.page-grades {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+.page-grades__skeleton-wrap,
+.page-grades__list-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+/* Kartu Ringkasan Rata-Rata Nilai */
+.page-grades__summary-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding: var(--space-16);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-surface);
+  box-shadow: var(--elevation-2);
+}
+
+.page-grades__summary-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.page-grades__summary-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.page-grades__summary-course {
+  margin: var(--space-4) 0 0;
+  font-size: var(--font-size-section-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  color: var(--color-text-primary);
+}
+
+.page-grades__summary-score {
+  margin: 0;
+  font-size: var(--font-size-body);
+  color: var(--color-text-muted);
+}
+
+.page-grades__summary-score strong {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+.page-grades__summary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+/* Filter Mata Kuliah & Jenis Penilaian */
+.page-grades__filters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.page-grades__filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.page-grades__filter-label {
+  font-size: var(--font-size-supporting);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.page-grades__select {
+  min-height: var(--touch-target-min);
+  padding: var(--space-8) var(--space-16);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-body);
+  cursor: pointer;
+}
+
+.page-grades__select:focus-visible {
+  outline: var(--border-width-medium) solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+.page-grades__section-title {
+  margin: 0;
+  font-size: var(--font-size-card-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  color: var(--color-text-primary);
+}
+
+/* Daftar Kartu Nilai: 1 kolom di mobile */
+.page-grades__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+}
+
+.page-grades__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  padding: var(--space-16);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-surface);
+  box-shadow: var(--elevation-1);
+}
+
+.page-grades__card-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+.page-grades__card-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.page-grades__weight {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+}
+
+.page-grades__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.page-grades__card-course {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+}
+
+.page-grades__card-title {
+  margin: 0;
+  font-size: var(--font-size-card-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  color: var(--color-text-primary);
+}
+
+.page-grades__card-meta {
+  margin: 0;
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+}
+
+/* Kotak Pesan Umpan Balik Dosen */
+.page-grades__feedback-box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-12) var(--space-16);
+  border-left: 3px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-page);
+}
+
+.page-grades__feedback-head {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-primary);
+}
+
+.page-grades__feedback-text {
+  margin: 0;
+  max-width: var(--measure-readable);
+  font-size: var(--font-size-supporting);
+  line-height: var(--line-height-body);
+  color: var(--color-text-primary);
+}
+
+.page-grades__pending-note {
+  margin: 0;
+  padding: var(--space-12);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-page);
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+}
+
+/* Skeleton */
+.page-grades__skeleton-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  padding: var(--space-16);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-surface);
+}
+
+.page-grades__skeleton-top {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+
+/* Panel simulasi 4 state */
+.page-grades__demo-bar {
+  margin-top: var(--space-8);
+  padding: var(--space-12) var(--space-16);
+  border: var(--border-width-thin) dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-surface);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+
+.page-grades__demo-label {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+}
+
+.page-grades__demo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.page-grades__demo-btn {
+  min-height: 36px;
+  padding: var(--space-4) var(--space-12);
+  border: var(--border-width-thin) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-page);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+}
+
+.page-grades__demo-btn--active {
+  background-color: var(--color-primary-bg);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.page-grades__demo-btn:focus-visible {
+  outline: var(--border-width-medium) solid var(--color-focus-ring);
+}
+
+/* Breakpoint Desktop (>= 840px): Ringkasan horizontal + 2 kolom kartu nilai */
+@media (min-width: 840px) {
+  .page-grades {
+    gap: var(--space-32);
+  }
+
+  .page-grades__summary-card {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-24);
+  }
+
+  .page-grades__filters {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-24);
+  }
+
+  .page-grades__filter-group {
+    min-width: 280px;
+  }
+
+  .page-grades__section-title {
+    font-size: var(--font-size-section-title);
+  }
+
+  .page-grades__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-24);
+  }
+
+  .page-grades__card,
+  .page-grades__skeleton-card {
+    padding: var(--space-24);
+  }
+}

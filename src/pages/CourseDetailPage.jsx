@@ -136,6 +136,7 @@ export function CourseDetailPage({
   onOpenTasks,
   onOpenQuiz,
   onOpenForum,
+  onOpenGrades,
   onLeaveCourse,
 }) {
   const [isLeaveDialogOpen, setIsLeaveDialogOpen] = useState(false);
@@ -249,18 +250,27 @@ export function CourseDetailPage({
               </h3>
 
               <div className="page-course__list">
-                {courseContent.featuredActivities.map((activity) => (
-                  <ActivityItem
-                    key={activity.id}
-                    title={activity.title}
-                    subtitle={activity.subtitle}
-                    badgeLabel={activity.badgeLabel}
-                    badgeTone={activity.badgeTone}
-                    icon={getActivityIcon(activity.type)}
-                    onClick={() => handleActivityClick(activity)}
-                  />
-                ))}
-              </div>
+              {courseContent.featuredActivities.map((activity) => (
+                <ActivityItem
+                  key={activity.id}
+                  title={activity.title}
+                  subtitle={activity.subtitle}
+                  badgeLabel={activity.badgeLabel}
+                  badgeTone={activity.badgeTone}
+                  icon={getActivityIcon(activity.type)}
+                  onClick={() => handleActivityClick(activity)}
+                />
+              ))}
+
+              <ActivityItem
+                title="Nilai & Umpan Balik Kelas"
+                subtitle="Lihat rekap skor tugas, kuis, dan catatan dosen"
+                badgeLabel="Nilai"
+                badgeTone="berhasil"
+                icon={<QuizIcon />}
+                onClick={() => onOpenGrades?.(activeCourse)}
+              />
+            </div>
             </section>
 
             <section

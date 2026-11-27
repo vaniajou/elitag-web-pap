@@ -1,0 +1,349 @@
+/* Mobile-first (< 840px) — Menggunakan token dari tokens.css */
+.page-profile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+.page-profile__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+
+.page-profile__title {
+  margin: 0;
+  font-size: var(--font-size-page-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-page-title);
+  color: var(--color-text-primary);
+}
+
+/* Umpan Balik Berhasil */
+.page-profile__success {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-12);
+  padding: var(--space-16);
+  border: var(--border-width-thin) solid var(--color-status-success);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-status-success-bg);
+  color: var(--color-status-success-text);
+}
+
+.page-profile__success-icon {
+  display: inline-flex;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.page-profile__success-text {
+  margin: 0;
+  font-size: var(--font-size-supporting);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-body);
+}
+
+/* Susunan Kolom */
+.page-profile__layout,
+.page-profile__identity-col,
+.page-profile__detail-col,
+.page-profile__skeleton-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+/* Kartu Umum */
+.page-profile__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding: var(--space-16);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-surface);
+  box-shadow: var(--elevation-1);
+}
+
+/* Kartu Identitas Mahasiswa (Sesuai E10 - Profil.pdf) */
+.page-profile__hero {
+  align-items: center;
+  text-align: center;
+  padding: var(--space-24) var(--space-16);
+  box-shadow: var(--elevation-2);
+}
+
+.page-profile__skeleton-hero {
+  align-items: center;
+  padding: var(--space-24) var(--space-16);
+}
+
+.page-profile__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-header);
+  color: var(--color-on-primary);
+  font-size: var(--font-size-page-title);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+
+.page-profile__hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.page-profile__hero-badges {
+  margin-bottom: var(--space-4);
+}
+
+.page-profile__name {
+  margin: 0;
+  font-size: var(--font-size-section-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  color: var(--color-text-primary);
+}
+
+.page-profile__email {
+  margin: 0;
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+  overflow-wrap: anywhere;
+}
+
+.page-profile__meta {
+  margin: var(--space-4) 0 0;
+  font-size: var(--font-size-supporting);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+}
+
+/* Statistik Belajar: 2x2 Grid di Mobile */
+.page-profile__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.page-profile__section-title {
+  margin: 0;
+  font-size: var(--font-size-card-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  color: var(--color-text-primary);
+}
+
+.page-profile__stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-12);
+}
+
+.page-profile__stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  padding: var(--space-16);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-surface);
+  box-shadow: var(--elevation-1);
+  text-align: center;
+}
+
+.page-profile__stat-value {
+  font-size: var(--font-size-page-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-page-title);
+  color: var(--color-primary);
+}
+
+.page-profile__stat-label {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+}
+
+/* Daftar Menu Pengaturan */
+.page-profile__menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+/* Form Edit Profil & Ganti Kata Sandi */
+.page-profile__form {
+  gap: var(--space-24);
+}
+
+.page-profile__form-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.page-profile__form-sub {
+  margin: 0;
+  max-width: var(--measure-readable);
+  font-size: var(--font-size-supporting);
+  line-height: var(--line-height-body);
+  color: var(--color-text-muted);
+}
+
+.page-profile__form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  padding-top: var(--space-4);
+}
+
+/* Pusat Bantuan */
+.page-profile__help-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.page-profile__help-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-12) var(--space-16);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-page);
+}
+
+.page-profile__help-q {
+  margin: 0;
+  font-size: var(--font-size-supporting);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+.page-profile__help-a {
+  margin: 0;
+  max-width: var(--measure-readable);
+  font-size: var(--font-size-supporting);
+  line-height: var(--line-height-body);
+  color: var(--color-text-muted);
+}
+
+/* Tombol Keluar */
+.page-profile__logout-wrap {
+  padding-top: var(--space-4);
+}
+
+.page-profile__logout-btn {
+  border-color: var(--color-status-error);
+  color: var(--color-status-error-text);
+}
+
+@media (hover: hover) {
+  .page-profile__logout-btn:hover:not(:disabled) {
+    background-color: var(--color-status-error-bg);
+    border-color: var(--color-status-error-text);
+  }
+}
+
+/* Panel simulasi 4 state */
+.page-profile__demo-bar {
+  margin-top: var(--space-8);
+  padding: var(--space-12) var(--space-16);
+  border: var(--border-width-thin) dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-surface);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+
+.page-profile__demo-label {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+}
+
+.page-profile__demo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.page-profile__demo-btn {
+  min-height: 36px;
+  padding: var(--space-4) var(--space-12);
+  border: var(--border-width-thin) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-page);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+}
+
+.page-profile__demo-btn--active {
+  background-color: var(--color-primary-bg);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.page-profile__demo-btn:focus-visible {
+  outline: var(--border-width-medium) solid var(--color-focus-ring);
+}
+
+/* Breakpoint Medium (>= 600px) */
+@media (min-width: 600px) {
+  .page-profile__form-actions {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+/* Breakpoint Desktop (>= 840px): 2 kolom (Identitas & Statistik kiri, Biodata/Edit Profil kanan) */
+@media (min-width: 840px) {
+  .page-profile {
+    gap: var(--space-32);
+  }
+
+  .page-profile__layout {
+    display: grid;
+    grid-template-columns: 340px minmax(0, 1fr);
+    align-items: start;
+    gap: var(--space-24);
+  }
+
+  .page-profile__identity-col {
+    position: sticky;
+    top: var(--space-32);
+    gap: var(--space-24);
+  }
+
+  .page-profile__detail-col {
+    gap: var(--space-24);
+  }
+
+  .page-profile__card {
+    padding: var(--space-24);
+  }
+
+  .page-profile__section-title {
+    font-size: var(--font-size-section-title);
+  }
+}
