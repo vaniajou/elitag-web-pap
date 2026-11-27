@@ -1,0 +1,225 @@
+.org-upload {
+  width: 100%;
+}
+
+/* Keadaan Kosong: Dropzone */
+.org-upload__dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-12);
+  padding: var(--space-24) var(--space-16);
+  border: var(--border-width-medium) dashed var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-page);
+  text-align: center;
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.org-upload__dropzone--dragging {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-bg);
+}
+
+.org-upload__drop-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary-bg);
+  color: var(--color-primary);
+}
+
+.org-upload__drop-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.org-upload__drop-title {
+  margin: 0;
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.org-upload__drop-sub {
+  margin: 0;
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+}
+
+.org-upload__drop-hint {
+  margin: var(--space-4) 0 0;
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+}
+
+/* Keadaan Terisi: Kartu Berkas Siap Kirim */
+.org-upload__file-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding: var(--space-16);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-page);
+}
+
+.org-upload__file-main {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  min-width: 0;
+}
+
+.org-upload__file-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-primary-bg);
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.org-upload__file-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.org-upload__file-name {
+  margin: 0;
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  overflow-wrap: anywhere;
+}
+
+.org-upload__file-meta {
+  margin: 0;
+  font-size: var(--font-size-supporting);
+  color: var(--color-text-muted);
+}
+
+.org-upload__file-ready {
+  color: var(--color-status-success-text);
+  font-weight: var(--font-weight-semibold);
+}
+
+.org-upload__file-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+/* Keadaan Mengunggah: Progress Bar */
+.org-upload__progress-box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  padding: var(--space-24) var(--space-16);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-page);
+}
+
+.org-upload__progress-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.org-upload__progress-label {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.org-upload__progress-file {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-muted);
+  overflow-wrap: anywhere;
+}
+
+.org-upload__progress-track {
+  width: 100%;
+  height: 10px;
+  overflow: hidden;
+  border-radius: var(--radius-full);
+  background-color: var(--color-border);
+}
+
+.org-upload__progress-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary);
+  transition: width var(--transition-normal);
+}
+
+/* Keadaan Galat */
+.org-upload__error-box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding: var(--space-16);
+  border: var(--border-width-thin) solid var(--color-status-error);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-status-error-bg);
+}
+
+.org-upload__error-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-12);
+  color: var(--color-status-error-text);
+}
+
+.org-upload__error-icon {
+  display: inline-flex;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.org-upload__error-text {
+  margin: 0;
+  font-size: var(--font-size-supporting);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-body);
+  color: var(--color-status-error-text);
+}
+
+.org-upload__error-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+/* Breakpoint Medium (>= 600px) */
+@media (min-width: 600px) {
+  .org-upload__file-card {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .org-upload__file-actions {
+    flex-shrink: 0;
+  }
+
+  .org-upload__dropzone {
+    padding: var(--space-32) var(--space-24);
+  }
+}

@@ -1,443 +1,755 @@
-/* Mobile-first (< 840px) */
+/* ==========================================================================
+   QuizPage.css — Halaman Pengerjaan Kuis (E09)
+   ========================================================================== */
+
 .page-quiz {
   display: flex;
   flex-direction: column;
-  gap: var(--space-24);
+  gap: var(--space-5, 20px);
+  max-width: 820px;
+  margin: 0 auto;
+  padding-bottom: var(--space-8, 32px);
 }
 
-.page-quiz__layout,
-.page-quiz__questions,
-.page-quiz__side,
-.page-quiz__skeleton-wrap,
-.page-quiz__result-wrap,
-.page-quiz__review-list {
+/* Top Bar */
+.page-quiz__top-bar {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-16);
-}
-
-/* Kartu Info & Timer */
-.page-quiz__intro-card {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-12);
-  padding: var(--space-16);
-  border: var(--border-width-thin) solid var(--color-border);
-  border-radius: var(--radius-lg);
-  background-color: var(--color-bg-surface);
-  box-shadow: var(--elevation-1);
-}
-
-.page-quiz__intro-meta {
-  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3, 12px);
   flex-wrap: wrap;
-  gap: var(--space-8);
 }
 
-.page-quiz__intro-desc {
+/* Skeleton Loading */
+.page-quiz__skeleton-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 16px);
+}
+
+.page-quiz__skeleton-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3, 12px);
+}
+
+.page-quiz__skeleton-pills {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-2, 8px);
+}
+
+/* ==========================================================================
+   MODE 1: Daftar Kuis (.page-quiz__catalog)
+   ========================================================================== */
+.page-quiz__catalog {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 16px);
+}
+
+.page-quiz__catalog-course {
   margin: 0;
-  max-width: var(--measure-readable);
-  font-size: var(--font-size-supporting);
-  line-height: var(--line-height-body);
-  color: var(--color-text-muted);
+  font-size: var(--text-sm, 0.875rem);
+  font-weight: 600;
+  color: var(--color-text-secondary, #475569);
 }
 
-/* Kartu Soal Pilihan Ganda */
+.page-quiz__catalog-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3, 12px);
+}
+
+.page-quiz__catalog-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4, 16px);
+  padding: var(--space-4, 16px) var(--space-5, 20px);
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-lg, 12px);
+  box-shadow: var(--shadow-xs, 0 1px 2px rgba(15, 23, 42, 0.04));
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.page-quiz__catalog-card:hover {
+  border-color: var(--color-primary, #991b1b);
+  box-shadow: var(--shadow-sm, 0 2px 6px rgba(15, 23, 42, 0.06));
+}
+
+.page-quiz__catalog-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+  min-width: 0;
+}
+
+.page-quiz__catalog-title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  flex-wrap: wrap;
+}
+
+.page-quiz__catalog-title {
+  margin: 0;
+  font-size: var(--text-base, 1rem);
+  font-weight: 700;
+  color: var(--color-text-primary, #0f172a);
+}
+
+.page-quiz__catalog-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  flex-wrap: wrap;
+  margin: 0;
+  font-size: var(--text-xs, 0.75rem);
+  color: var(--color-text-secondary, #475569);
+}
+
+.page-quiz__catalog-meta-part {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.page-quiz__catalog-action {
+  flex-shrink: 0;
+}
+
+.page-quiz__catalog-footer {
+  margin-top: var(--space-2, 8px);
+}
+
+/* ==========================================================================
+   MODE 2: Pengerjaan Soal Aktif (.page-quiz__play-shell)
+   ========================================================================== */
+.page-quiz__play-shell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5, 20px);
+}
+
+/* Status Bar: Timer & Autosave */
+.page-quiz__status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3, 12px);
+  flex-wrap: wrap;
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-lg, 12px);
+}
+
+.page-quiz__timer-badge {
+  font-variant-numeric: tabular-nums;
+}
+
+.page-quiz__autosave {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-xs, 0.75rem);
+  font-weight: 600;
+  color: var(--color-success, #15803d);
+}
+
+/* Navigasi Nomor Soal (Grid Horizontal) */
+.page-quiz__number-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3, 12px);
+  flex-wrap: wrap;
+  padding: var(--space-4, 16px);
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-lg, 12px);
+}
+
+.page-quiz__number-strip {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(44px, 48px));
+  gap: var(--space-2, 8px);
+}
+
+.page-quiz__num-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  border-radius: var(--radius-md, 8px);
+  border: 1.5px solid var(--color-border, #cbd5e1);
+  background: var(--color-surface, #ffffff);
+  color: var(--color-text-primary, #0f172a);
+  font-size: var(--text-sm, 0.875rem);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.page-quiz__num-btn:hover {
+  border-color: var(--color-primary, #991b1b);
+  background: var(--color-primary-subtle, #fef2f2);
+}
+
+.page-quiz__num-btn--active {
+  background: var(--color-primary, #991b1b);
+  border-color: var(--color-primary, #991b1b);
+  color: #ffffff;
+}
+
+.page-quiz__num-btn--active:hover {
+  background: var(--color-primary-hover, #7f1d1d);
+}
+
+.page-quiz__num-btn--answered {
+  background: var(--color-success-subtle, #f0fdf4);
+  border-color: var(--color-success, #16a34a);
+  color: var(--color-success, #15803d);
+}
+
+.page-quiz__num-dot {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-success, #16a34a);
+}
+
+.page-quiz__progress-text {
+  margin: 0;
+  font-size: var(--text-sm, 0.875rem);
+  font-weight: 600;
+  color: var(--color-text-secondary, #475569);
+}
+
+/* Kartu Soal & Opsi Pilihan Ganda */
 .page-quiz__question-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 16px);
   margin: 0;
-  padding: var(--space-16);
-  border: var(--border-width-thin) solid var(--color-border);
-  border-radius: var(--radius-lg);
-  background-color: var(--color-bg-surface);
-  box-shadow: var(--elevation-1);
-  scroll-margin-top: var(--space-24);
+  padding: var(--space-5, 20px);
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-lg, 12px);
+  box-shadow: var(--shadow-xs, 0 1px 2px rgba(15, 23, 42, 0.04));
 }
 
 .page-quiz__question-legend {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
+  display: block;
   width: 100%;
+  margin-bottom: var(--space-4, 16px);
   padding: 0;
-  margin-bottom: var(--space-16);
+  font-size: var(--text-base, 1rem);
+  line-height: 1.55;
+  color: var(--color-text-primary, #0f172a);
 }
 
-.page-quiz__q-number {
-  font-size: var(--font-size-caption);
-  font-weight: var(--font-weight-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--color-primary);
+.page-quiz__q-prefix {
+  font-weight: 700;
+  color: var(--color-primary, #991b1b);
 }
 
 .page-quiz__q-text {
-  margin: 0;
-  max-width: var(--measure-readable);
-  font-size: var(--font-size-body);
-  font-weight: var(--font-weight-semibold);
-  line-height: var(--line-height-body);
-  color: var(--color-text-primary);
+  font-weight: 600;
 }
 
 .page-quiz__options {
   display: flex;
   flex-direction: column;
-  gap: var(--space-12);
+  gap: var(--space-3, 12px);
 }
 
 .page-quiz__option {
-  position: relative;
   display: flex;
-  align-items: center;
-  gap: var(--space-12);
-  min-height: var(--touch-target-min);
-  padding: var(--space-12) var(--space-16);
-  border: var(--border-width-thin) solid var(--color-border);
-  border-radius: var(--radius-md);
-  background-color: var(--color-bg-surface);
+  align-items: flex-start;
+  gap: var(--space-3, 12px);
+  min-height: 48px;
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  background: var(--color-surface-subtle, #f8fafc);
+  border: 1.5px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-md, 10px);
   cursor: pointer;
-  transition:
-    border-color var(--transition-fast),
-    background-color var(--transition-fast);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
-.page-quiz__radio {
-  position: absolute;
-  opacity: 0;
-  width: 1px;
-  height: 1px;
-}
-
-.page-quiz__option:has(.page-quiz__radio:focus-visible) {
-  outline: var(--border-width-medium) solid var(--color-focus-ring);
-  outline-offset: 2px;
-}
-
-@media (hover: hover) {
-  .page-quiz__option:hover:not(.page-quiz__option--selected) {
-    border-color: var(--color-border-strong);
-    background-color: var(--color-bg-page);
-  }
+.page-quiz__option:hover {
+  border-color: var(--color-primary, #991b1b);
+  background: var(--color-primary-subtle, #fef2f2);
 }
 
 .page-quiz__option--selected {
-  border-width: var(--border-width-medium);
-  border-color: var(--color-primary);
-  background-color: var(--color-primary-bg);
+  background: var(--color-primary-subtle, #fef2f2);
+  border-color: var(--color-primary, #991b1b);
+  box-shadow: 0 0 0 1px var(--color-primary, #991b1b);
 }
 
-.page-quiz__option-key {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: var(--radius-full);
-  border: var(--border-width-thin) solid var(--color-border-strong);
-  background-color: var(--color-bg-surface);
-  font-size: var(--font-size-caption);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
+.page-quiz__radio {
+  margin-top: 3px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-primary, #991b1b);
   flex-shrink: 0;
-}
-
-.page-quiz__option--selected .page-quiz__option-key {
-  border-color: var(--color-primary);
-  background-color: var(--color-primary);
-  color: var(--color-on-primary);
-}
-
-.page-quiz__option-label {
-  font-size: var(--font-size-supporting);
-  line-height: var(--line-height-body);
-  color: var(--color-text-primary);
-}
-
-/* Panel Navigasi Soal & Kirim */
-.page-quiz__nav-card {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-16);
-  padding: var(--space-16);
-  border: var(--border-width-thin) solid var(--color-border);
-  border-radius: var(--radius-lg);
-  background-color: var(--color-bg-surface);
-  box-shadow: var(--elevation-2);
-}
-
-.page-quiz__nav-header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-8);
-}
-
-.page-quiz__nav-title {
-  margin: 0;
-  font-size: var(--font-size-card-title);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
-}
-
-.page-quiz__nav-count {
-  font-size: var(--font-size-caption);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-muted);
-}
-
-.page-quiz__nav-grid {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: var(--space-8);
-}
-
-.page-quiz__nav-num {
-  min-height: 44px;
-  border: var(--border-width-thin) solid var(--color-border);
-  border-radius: var(--radius-md);
-  background-color: var(--color-bg-page);
-  color: var(--color-text-primary);
-  font-size: var(--font-size-supporting);
-  font-weight: var(--font-weight-semibold);
   cursor: pointer;
 }
 
-.page-quiz__nav-num--answered {
-  border-color: var(--color-primary);
-  background-color: var(--color-primary-bg);
-  color: var(--color-primary);
+.page-quiz__option-letter {
+  font-weight: 700;
+  font-size: var(--text-sm, 0.875rem);
+  color: var(--color-text-primary, #0f172a);
+  flex-shrink: 0;
 }
 
-.page-quiz__nav-num:focus-visible {
-  outline: var(--border-width-medium) solid var(--color-focus-ring);
-  outline-offset: 2px;
+.page-quiz__option-label {
+  font-size: var(--text-sm, 0.875rem);
+  line-height: 1.5;
+  color: var(--color-text-primary, #0f172a);
 }
 
 .page-quiz__warning {
   margin: 0;
-  padding: var(--space-12);
-  border-radius: var(--radius-md);
-  background-color: var(--color-status-error-bg);
-  color: var(--color-status-error-text);
-  font-size: var(--font-size-supporting);
-  font-weight: var(--font-weight-medium);
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-md, 8px);
+  font-size: var(--text-sm, 0.875rem);
+  font-weight: 600;
+  color: #b91c1c;
 }
 
-.page-quiz__submit-actions {
+/* Navigasi Bawah Soal */
+.page-quiz__play-actions {
   display: flex;
   flex-direction: column;
-  gap: var(--space-12);
+  gap: var(--space-4, 16px);
 }
 
-/* Ringkasan Skor & Pembahasan */
+.page-quiz__step-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3, 12px);
+}
+
+/* ==========================================================================
+   MODE 3: Ringkasan Skor & Pembahasan (.page-quiz__review-shell)
+   ========================================================================== */
+.page-quiz__review-shell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5, 20px);
+}
+
 .page-quiz__result-card {
   display: flex;
   flex-direction: column;
-  gap: var(--space-16);
-  padding: var(--space-24);
-  border: var(--border-width-thin) solid var(--color-border);
-  border-radius: var(--radius-lg);
-  background-color: var(--color-bg-surface);
-  box-shadow: var(--elevation-2);
+  gap: var(--space-4, 16px);
+  padding: var(--space-6, 24px);
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-lg, 12px);
+  box-shadow: var(--shadow-sm, 0 2px 6px rgba(15, 23, 42, 0.05));
 }
 
 .page-quiz__result-head {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-12);
+  justify-content: space-between;
+  gap: var(--space-2, 8px);
+  flex-wrap: wrap;
 }
 
 .page-quiz__course-ref {
-  margin: 0;
-  font-size: var(--font-size-supporting);
-  color: var(--color-text-muted);
+  font-size: var(--text-xs, 0.75rem);
+  font-weight: 600;
+  color: var(--color-text-secondary, #475569);
 }
 
 .page-quiz__score {
   margin: 0;
-  font-size: var(--font-size-page-title);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-page-title);
-  color: var(--color-text-primary);
+  font-size: var(--text-2xl, 1.5rem);
+  font-weight: 800;
+  color: var(--color-text-primary, #0f172a);
 }
 
 .page-quiz__result-desc {
   margin: 0;
-  font-size: var(--font-size-supporting);
-  color: var(--color-text-muted);
+  font-size: var(--text-sm, 0.875rem);
+  color: var(--color-text-secondary, #475569);
 }
 
 .page-quiz__stats-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-12);
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3, 12px);
 }
 
 .page-quiz__stat-box {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
-  padding: var(--space-12);
-  border: var(--border-width-thin) solid var(--color-border);
-  border-radius: var(--radius-md);
-  background-color: var(--color-bg-page);
-  text-align: center;
+  align-items: center;
+  gap: 4px;
+  padding: var(--space-3, 12px);
+  background: var(--color-surface-subtle, #f8fafc);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-md, 10px);
 }
 
 .page-quiz__stat-label {
-  font-size: var(--font-size-caption);
-  color: var(--color-text-muted);
+  font-size: var(--text-xs, 0.75rem);
+  color: var(--color-text-secondary, #475569);
 }
 
 .page-quiz__stat-value {
-  font-size: var(--font-size-section-title);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
+  font-size: var(--text-lg, 1.125rem);
+  font-weight: 800;
+  color: var(--color-text-primary, #0f172a);
 }
 
 .page-quiz__stat-value--success {
-  color: var(--color-status-success-text);
+  color: var(--color-success, #15803d);
 }
 
 .page-quiz__stat-value--error {
-  color: var(--color-status-error-text);
+  color: #b91c1c;
 }
 
 .page-quiz__result-actions {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-12);
+  align-items: center;
+  gap: var(--space-3, 12px);
+  flex-wrap: wrap;
 }
 
-.page-quiz__section-title {
-  margin: 0;
-  font-size: var(--font-size-card-title);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
+/* Pembahasan Per Soal (jika dirender di bawah ringkasan) */
+.page-quiz__review-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
 }
 
 .page-quiz__review-item {
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
-  padding: var(--space-16);
-  border: var(--border-width-thin) solid var(--color-border);
-  border-radius: var(--radius-lg);
-  background-color: var(--color-bg-surface);
+  gap: var(--space-2, 8px);
+  padding: var(--space-4, 16px);
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-lg, 12px);
+}
+
+.page-quiz__review-question {
+  margin: 0;
+  font-size: var(--text-sm, 0.875rem);
+  font-weight: 700;
+  color: var(--color-text-primary, #0f172a);
+}
+
+.page-quiz__review-answer {
+  margin: 0;
+  font-size: var(--text-xs, 0.75rem);
+  color: var(--color-text-secondary, #475569);
+}
+
+.page-quiz__review-explanation {
+  margin: 0;
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: var(--color-surface-subtle, #f8fafc);
+  border-left: 3px solid var(--color-primary, #991b1b);
+  border-radius: 4px;
+  font-size: var(--text-xs, 0.75rem);
+  line-height: 1.5;
+  color: var(--color-text-primary, #0f172a);
+}
+
+/* Modal Pop-up Hasil Kuis & Toolbar Demo State */
+.page-quiz__modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4, 16px);
+  background: rgba(15, 23, 42, 0.55);
+}
+
+.page-quiz__modal-card {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 16px);
+  padding: var(--space-6, 24px);
+  background: var(--color-surface, #ffffff);
+  border-radius: var(--radius-xl, 16px);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2);
+}
+
+.page-quiz__demo-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  flex-wrap: wrap;
+  margin-top: var(--space-4, 16px);
+  padding: var(--space-3, 12px);
+  background: var(--color-surface-subtle, #f8fafc);
+  border: 1px dashed var(--color-border, #cbd5e1);
+  border-radius: var(--radius-md, 8px);
+  font-size: var(--text-xs, 0.75rem);
+  color: var(--color-text-secondary, #475569);
+}
+
+.page-quiz__demo-bar button {
+  padding: 4px 10px;
+  border: 1px solid var(--color-border, #cbd5e1);
+  border-radius: 6px;
+  background: #ffffff;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.page-quiz__demo-bar button:hover {
+  border-color: var(--color-primary, #991b1b);
+  color: var(--color-primary, #991b1b);
+}
+
+/* Responsif Desktop */
+@media (min-width: 768px) {
+  .page-quiz__question-card {
+    padding: var(--space-6, 24px);
+  }
+
+  .page-quiz__play-actions {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .page-quiz__play-actions > button {
+    width: auto;
+    min-width: 180px;
+  }
+}
+
+/* ==========================================================================
+   Tambahan Style Modal Hasil, Pembahasan Jawaban & Toolbar Demo (E09)
+   ========================================================================== */
+
+.page-quiz__section-title {
+  margin: var(--space-2, 8px) 0 0;
+  font-size: var(--text-lg, 1.125rem);
+  font-weight: 700;
+  color: var(--color-text-primary, #0f172a);
 }
 
 .page-quiz__review-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-8);
+  gap: var(--space-2, 8px);
+  flex-wrap: wrap;
+}
+
+.page-quiz__review-num {
+  font-size: var(--text-xs, 0.75rem);
+  font-weight: 700;
+  color: var(--color-text-secondary, #475569);
+}
+
+.page-quiz__review-q {
+  margin: var(--space-1, 4px) 0 var(--space-2, 8px);
+  font-size: var(--text-base, 1rem);
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--color-text-primary, #0f172a);
 }
 
 .page-quiz__review-answer,
-.page-quiz__review-correct,
-.page-quiz__review-exp {
+.page-quiz__review-correct {
   margin: 0;
-  max-width: var(--measure-readable);
-  font-size: var(--font-size-supporting);
-  line-height: var(--line-height-body);
-}
-
-.page-quiz__review-answer {
-  color: var(--color-text-primary);
+  font-size: var(--text-sm, 0.875rem);
+  line-height: 1.45;
+  color: var(--color-text-secondary, #475569);
 }
 
 .page-quiz__review-correct {
-  color: var(--color-status-success-text);
+  color: var(--color-success, #15803d);
 }
 
 .page-quiz__review-exp {
-  color: var(--color-text-muted);
+  margin: var(--space-2, 8px) 0 0;
+  padding: var(--space-3, 12px);
+  background: var(--color-surface-subtle, #f8fafc);
+  border-left: 3px solid var(--color-primary, #991b1b);
+  border-radius: var(--radius-sm, 6px);
+  font-size: var(--text-xs, 0.75rem);
+  line-height: 1.55;
+  color: var(--color-text-primary, #0f172a);
 }
 
-/* Panel simulasi 4 state */
-.page-quiz__demo-bar {
-  margin-top: var(--space-8);
-  padding: var(--space-12) var(--space-16);
-  border: var(--border-width-thin) dashed var(--color-border-strong);
-  border-radius: var(--radius-md);
-  background-color: var(--color-bg-surface);
+/* Modal Pop-up Hasil Kuis */
+.page-quiz__result-modal {
+  width: 100%;
+  max-width: 440px;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--space-12);
+  text-align: center;
+  gap: var(--space-3, 12px);
+  padding: var(--space-6, 24px);
+  background: #ffffff;
+  color: var(--color-text-primary, #0f172a);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-xl, 16px);
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.25);
 }
 
+.page-quiz__modal-badge {
+  display: flex;
+  justify-content: center;
+}
+
+.page-quiz__modal-title {
+  margin: 0;
+  font-size: var(--text-lg, 1.125rem);
+  font-weight: 700;
+  color: var(--color-text-primary, #0f172a);
+}
+
+.page-quiz__modal-score-wrap {
+  margin: var(--space-1, 4px) 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+}
+
+.page-quiz__modal-score {
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--color-primary, #991b1b);
+}
+
+.page-quiz__modal-max {
+  font-size: var(--text-base, 1rem);
+  font-weight: 600;
+  color: var(--color-text-secondary, #475569);
+}
+
+.page-quiz__modal-stats {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2, 8px);
+  margin: var(--space-2, 8px) 0;
+}
+
+.page-quiz__modal-actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+  margin-top: var(--space-2, 8px);
+}
+
+/* Bar Simulasi State E09 */
 .page-quiz__demo-label {
-  font-size: var(--font-size-caption);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-muted);
+  font-weight: 700;
+  color: var(--color-text-primary, #0f172a);
 }
 
 .page-quiz__demo-actions {
   display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
   flex-wrap: wrap;
-  gap: var(--space-8);
-}
-
-.page-quiz__demo-btn {
-  min-height: 36px;
-  padding: var(--space-4) var(--space-12);
-  border: var(--border-width-thin) solid var(--color-border-strong);
-  border-radius: var(--radius-sm);
-  background-color: var(--color-bg-page);
-  color: var(--color-text-primary);
-  font-size: var(--font-size-caption);
-  font-weight: var(--font-weight-medium);
-  cursor: pointer;
 }
 
 .page-quiz__demo-btn--active {
-  background-color: var(--color-primary-bg);
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-  font-weight: var(--font-weight-semibold);
+  background: var(--color-primary, #991b1b) !important;
+  border-color: var(--color-primary, #991b1b) !important;
+  color: #ffffff !important;
+  font-weight: 600;
 }
 
-.page-quiz__demo-btn:focus-visible {
-  outline: var(--border-width-medium) solid var(--color-focus-ring);
+/* Perbaiki spasi kartu ringkasan skor di QuizPage */
+.page-quiz__result-card {
+  gap: 14px;
+  padding: 24px 28px;
 }
 
-/* Breakpoint Desktop (>= 840px): Soal di kiri, panel navigasi sticky di kanan */
-@media (min-width: 840px) {
-  .page-quiz {
-    gap: var(--space-32);
-  }
+.page-quiz__score {
+  margin-top: 2px;
+  margin-bottom: 2px;
+  line-height: 1.25;
+}
 
-  .page-quiz__layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 320px;
-    align-items: start;
-    gap: var(--space-24);
-  }
+.page-quiz__result-desc {
+  margin-bottom: 4px;
+  line-height: 1.5;
+}
 
-  .page-quiz__questions {
-    gap: var(--space-24);
-  }
+.page-quiz__stats-grid {
+  gap: 14px;
+  margin-top: 2px;
+  margin-bottom: 4px;
+}
 
-  .page-quiz__side {
-    position: sticky;
-    top: var(--space-32);
-  }
+.page-quiz__result-actions {
+  gap: 12px;
+  margin-top: 6px;
+}
 
-  .page-quiz__intro-card,
-  .page-quiz__question-card,
-  .page-quiz__nav-card,
-  .page-quiz__review-item {
-    padding: var(--space-24);
-  }
+/* Perbaiki jarak & ukuran tombol di Daftar Kuis (E09) */
+.page-quiz__catalog {
+  gap: 16px;
+}
 
-  .page-quiz__result-actions {
-    flex-direction: row;
-  }
+.page-quiz__catalog-course {
+  margin-bottom: 4px;
+  line-height: 1.5;
+}
 
-  .page-quiz__section-title {
-    font-size: var(--font-size-section-title);
-  }
+.page-quiz__catalog-grid {
+  gap: 14px;
+}
+
+.page-quiz__catalog-card {
+  padding: 18px 22px;
+  gap: 20px;
+}
+
+/* Rapikan tinggi & padding tombol "Mulai" / "Lihat Hasil" di dalam kartu */
+.page-quiz__catalog-action button {
+  min-height: 36px;
+  height: 36px;
+  padding: 0 18px;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+/* Rapikan tombol "Kembali ke Halaman Kelas" di bawah daftar kuis */
+.page-quiz__catalog-footer {
+  margin-top: 8px;
+}
+
+.page-quiz__catalog-footer button {
+  width: auto;
+  min-height: 40px;
+  height: 40px;
+  padding: 0 20px;
+  font-size: 0.875rem;
 }

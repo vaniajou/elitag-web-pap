@@ -1,7 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import logoUntag from './assets/logo-untag.png';
-import { Button } from './components/atoms';
-import { AppLayoutTemplate } from './components/templates';
 import { LoginPage } from './pages/LoginPage';
 import { HomePage } from './pages/HomePage';
 import { SearchCoursePage } from './pages/SearchCoursePage';
@@ -10,9 +8,15 @@ import { CourseDetailPage } from './pages/CourseDetailPage';
 import { MaterialPage } from './pages/MaterialPage';
 import { QuizPage } from './pages/QuizPage';
 import { TaskListPage } from './pages/TaskListPage';
+import { TaskSubmitPage } from './pages/TaskSubmitPage';
+import { ProfilePage } from './pages/ProfilePage';
+import { DiscussionPage } from './pages/DiscussionPage';
+import { GradesPage } from './pages/GradesPage';
 import {
   MOCK_COURSE_CATALOG,
+  MOCK_DISCUSSIONS,
   MOCK_ENROLLED_COURSES,
+  MOCK_GRADES,
   MOCK_STUDENT,
   MOCK_TASKS,
 } from './data/mockElitagData';
@@ -25,7 +29,11 @@ const ROUTES = {
   COURSE_DETAIL: '#/kelas',
   MATERIAL: '#/materi',
   QUIZ: '#/kuis',
-  FORUM: '#/forum',
+  FORUM: '#/kelas/diskusi',
+  FORUM_ALT: '#/diskusi',
+  FORUM_LEGACY: '#/forum',
+  GRADES: '#/nilai',
+  COURSE_GRADES: '#/kelas/nilai',
   TASKS: '#/tugas',
   TASK_SUBMIT: '#/tugas/kumpul',
   PROFILE: '#/profil',
@@ -45,11 +53,14 @@ function parseHash() {
 export default function App() {
   const [location, setLocation] = useState(parseHash);
   const [sessionUser, setSessionUser] = useState(null);
+  const [studentProfile, setStudentProfile] = useState(MOCK_STUDENT);
   const [enrolledCourses, setEnrolledCourses] = useState(MOCK_ENROLLED_COURSES);
-  const [tasks] = useState(MOCK_TASKS);
+  const [tasks, setTasks] = useState(MOCK_TASKS);
+  const [discussionsByCourse, setDiscussionsByCourse] =
+    useState(MOCK_DISCUSSIONS);
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [selectedActivity, setSelectedActivity] = useState(null);
-  const [selectedTask, setSelectedTask] = useState(null);
+  const [selectedTaskId, setSelectedTaskId] = useState(null);
   const [completedMaterialIds, setCompletedMaterialIds] = useState([
     'meet-pw-01',
   ]);
@@ -68,6 +79,30 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
+  const liveAcademicStats = useMemo(() => {
+    const completedTasksCount = tasks.filter(
+      (item) =>
+        item.type === 'task' &&
+        (item.status === 'Sudah Dikumpulkan' || item.status === 'Dinilai')
+    ).length;
+
+    const quizScores = Object.values(quizResults).map((entry) => entry.score);
+    const averageQuizScore =
+      quizScores.length > 0
+        ? Math.round(
+            quizScores.reduce((sum, score) => sum + score, 0) /
+              quizScores.length
+          )
+        : (studentProfile?.academicStats?.averageQuizScore ?? 88);
+
+    return {
+      enrolledCourses: enrolledCourses.length,
+      completedTasks: completedTasksCount,
+      averageQuizScore,
+      attendanceRate: studentProfile.academicStats.attendanceRate,
+    };
+  }, [enrolledCourses, tasks, quizResults, studentProfile]);
+
   function navigate(nextRoute) {
     window.location.hash = nextRoute;
     const [path, queryString = ''] = nextRoute.split('?');
@@ -82,16 +117,29 @@ export default function App() {
   function handleLoginSuccess(user) {
     setSessionUser({
       ...user,
-      name: MOCK_STUDENT.name,
+      name: studentProfile.name,
     });
     navigate(ROUTES.HOME);
+  }
+
+  function handleUpdateProfile(updatedProfile) {
+    setStudentProfile(updatedProfile);
+    setSessionUser((prev) =>
+      prev
+        ? {
+            ...prev,
+            name: updatedProfile.name,
+            identifier: updatedProfile.email,
+          }
+        : prev
+    );
   }
 
   function handleLogout() {
     setSessionUser(null);
     setSelectedCourse(null);
     setSelectedActivity(null);
-    setSelectedTask(null);
+    setSelectedTaskId(null);
     navigate(ROUTES.LOGIN);
   }
 
@@ -175,12 +223,44 @@ export default function App() {
     navigate(ROUTES.FORUM);
   }
 
+  function handleOpenGradesFromCourse(course) {
+    setSelectedCourse(course);
+    navigate(ROUTES.COURSE_GRADES);
+  }
+
+  function handleThreadsChange(courseId, updatedThreads) {
+    setDiscussionsByCourse((prev) => ({
+      ...prev,
+      [courseId]: updatedThreads,
+    }));
+  }
+
   function handleOpenTaskSubmit(task) {
-    setSelectedTask(task);
+    setSelectedTaskId(task?.id || null);
     const targetRoute = task?.id
       ? `${ROUTES.TASKS}/${task.id}`
       : ROUTES.TASK_SUBMIT;
     navigate(targetRoute);
+  }
+
+  function handleSubmitTask(taskId, newSubmissionEntry) {
+    setTasks((prev) =>
+      prev.map((item) => {
+        if (item.id !== taskId) return item;
+        const previousHistory = (item.submissionHistory || []).map((entry) => ({
+          ...entry,
+          version: entry.version.replace(' (Aktif)', ''),
+        }));
+        return {
+          ...item,
+          status: 'Sudah Dikumpulkan',
+          tabGroup: 'selesai',
+          remainingTimeText: `Dikumpulkan ${newSubmissionEntry.submittedAt}`,
+          submittedFile: newSubmissionEntry.fileName,
+          submissionHistory: [newSubmissionEntry, ...previousHistory],
+        };
+      })
+    );
   }
 
   /* Halaman E01 Masuk */
@@ -194,7 +274,7 @@ export default function App() {
   if (location.path === ROUTES.HOME) {
     return (
       <HomePage
-        studentName={sessionUser.name}
+        studentName={studentProfile.name}
         logoSrc={logoUntag}
         onNavigate={navigate}
         onOpenCourse={handleOpenCourse}
@@ -251,6 +331,7 @@ export default function App() {
         onOpenTasks={handleOpenTasksFromCourse}
         onOpenQuiz={handleOpenQuiz}
         onOpenForum={handleOpenForum}
+        onOpenGrades={handleOpenGradesFromCourse}
         onLeaveCourse={handleLeaveCourse}
       />
     );
@@ -275,7 +356,7 @@ export default function App() {
     );
   }
 
-  /* Halaman Pengerjaan Kuis (E09) */
+  /* Halaman E09 Pengerjaan Kuis */
   if (location.path === ROUTES.QUIZ) {
     const activeCourse =
       selectedCourse || enrolledCourses[0] || MOCK_COURSE_CATALOG[0];
@@ -295,6 +376,56 @@ export default function App() {
     );
   }
 
+  /* Halaman E11 Forum Diskusi (#/kelas/diskusi, #/diskusi, atau #/forum) */
+  const isForumRoute =
+    location.path === ROUTES.FORUM ||
+    location.path === ROUTES.FORUM_ALT ||
+    location.path === ROUTES.FORUM_LEGACY;
+
+  if (isForumRoute) {
+    const activeCourse =
+      selectedCourse || enrolledCourses[0] || MOCK_COURSE_CATALOG[0];
+    const courseThreads =
+      discussionsByCourse[activeCourse.id] || discussionsByCourse.default;
+
+    return (
+      <DiscussionPage
+        key={activeCourse.id}
+        course={activeCourse}
+        studentName={studentProfile.name}
+        initialThreads={courseThreads}
+        logoSrc={logoUntag}
+        onNavigate={navigate}
+        onBack={() => navigate(ROUTES.COURSE_DETAIL)}
+        onThreadsChange={handleThreadsChange}
+      />
+    );
+  }
+
+  /* Halaman E12 Nilai & Umpan Balik (#/nilai atau #/kelas/nilai) */
+  const isGradesRoute =
+    location.path === ROUTES.GRADES || location.path === ROUTES.COURSE_GRADES;
+
+  if (isGradesRoute) {
+    const fromCourse = location.path === ROUTES.COURSE_GRADES;
+    const initialCourseId = fromCourse
+      ? selectedCourse?.id || 'mk-pw-01'
+      : 'semua';
+
+    return (
+      <GradesPage
+        key={initialCourseId}
+        grades={MOCK_GRADES}
+        initialCourseId={initialCourseId}
+        fromCourse={fromCourse}
+        logoSrc={logoUntag}
+        onNavigate={navigate}
+        onBackToCourse={() => navigate(ROUTES.COURSE_DETAIL)}
+        onBackToHome={() => navigate(ROUTES.HOME)}
+      />
+    );
+  }
+
   /* Halaman E07 Daftar Tugas & Tenggat */
   if (location.path === ROUTES.TASKS) {
     return (
@@ -309,90 +440,39 @@ export default function App() {
     );
   }
 
-  /* Deteksi rute detail/pengumpulan tugas: #/tugas/kumpul atau #/tugas/:id */
+  /* Halaman E08 Detail & Pengumpulan Tugas (#/tugas/kumpul atau #/tugas/:id) */
   const isTaskSubmitRoute =
     location.path === ROUTES.TASK_SUBMIT ||
     location.path.startsWith(`${ROUTES.TASKS}/`);
 
-  const taskIdFromUrl = isTaskSubmitRoute
-    ? location.path.replace(`${ROUTES.TASKS}/`, '')
-    : '';
-  const resolvedTask =
-    selectedTask ||
-    tasks.find((item) => item.id === taskIdFromUrl) ||
-    tasks[0];
+  if (isTaskSubmitRoute) {
+    const slug = location.path.replace(`${ROUTES.TASKS}/`, '');
+    const resolvedTaskId =
+      slug && slug !== 'kumpul' ? slug : selectedTaskId || tasks[0]?.id;
+    const resolvedTask =
+      tasks.find((item) => item.id === resolvedTaskId) || tasks[0];
 
-  /* Placeholder sementara untuk E08, E10, dan E11 */
-  const placeholderMap = {
-    [ROUTES.FORUM]: {
-      nav: 'beranda',
-      backRoute: ROUTES.COURSE_DETAIL,
-      backLabel: 'Kembali ke Halaman Kelas',
-      title: `E11 — ${selectedActivity?.title || 'Forum Diskusi Kelas'}`,
-      desc: selectedCourse
-        ? `Ruang diskusi untuk mata kuliah ${selectedCourse.title}.`
-        : 'Forum diskusi kelas (halaman opsional).',
-    },
-    [ROUTES.PROFILE]: {
-      nav: 'profil',
-      backRoute: ROUTES.HOME,
-      backLabel: 'Kembali ke Beranda',
-      title: 'E10 — Profil Mahasiswa',
-      desc: `Masuk sebagai ${sessionUser.name} (${sessionUser.identifier}).`,
-    },
-  };
+    return (
+      <TaskSubmitPage
+        key={resolvedTask.id}
+        task={resolvedTask}
+        logoSrc={logoUntag}
+        onNavigate={navigate}
+        onBack={() => navigate(ROUTES.TASKS)}
+        onSubmitTask={handleSubmitTask}
+      />
+    );
+  }
 
-  const activePlaceholder = isTaskSubmitRoute
-    ? {
-        nav: 'tugas',
-        backRoute: ROUTES.TASKS,
-        backLabel: 'Kembali ke Daftar Tugas',
-        title: `E08 — ${resolvedTask?.title || 'Detail & Pengumpulan Tugas'}`,
-        desc: resolvedTask
-          ? `${resolvedTask.courseName} · ${resolvedTask.dueDateText} · Status: ${resolvedTask.status}`
-          : 'Formulir unggah berkas tugas akan dibangun pada tahap berikutnya.',
-      }
-    : placeholderMap[location.path] || placeholderMap[ROUTES.PROFILE];
-
+  /* Halaman E10 Profil Mahasiswa & Edit Profil */
   return (
-    <AppLayoutTemplate
-      activeNav={activePlaceholder.nav}
-      onNavigate={navigate}
+    <ProfilePage
+      studentProfile={studentProfile}
+      academicStats={liveAcademicStats}
       logoSrc={logoUntag}
-    >
-      <section
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 'var(--space-16)',
-        }}
-      >
-        <h1 style={{ margin: 0, fontSize: 'var(--font-size-page-title)' }}>
-          {activePlaceholder.title}
-        </h1>
-        <p style={{ margin: 0, color: 'var(--color-text-muted)' }}>
-          {activePlaceholder.desc}
-        </p>
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: 'var(--space-12)',
-          }}
-        >
-          <Button
-            variant="sekunder"
-            onClick={() => navigate(activePlaceholder.backRoute)}
-          >
-            {activePlaceholder.backLabel}
-          </Button>
-          {location.path === ROUTES.PROFILE && (
-            <Button variant="destruktif" onClick={handleLogout}>
-              Keluar dari Akun
-            </Button>
-          )}
-        </div>
-      </section>
-    </AppLayoutTemplate>
+      onNavigate={navigate}
+      onUpdateProfile={handleUpdateProfile}
+      onLogout={handleLogout}
+    />
   );
 }
