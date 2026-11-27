@@ -1,0 +1,175 @@
+/* Mobile-first (< 840px) */
+.page-tasks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+.page-tasks__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.page-tasks__title-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.page-tasks__title {
+  margin: 0;
+  font-size: var(--font-size-page-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-page-title);
+  color: var(--color-text-primary);
+}
+
+.page-tasks__search-wrap {
+  width: 100%;
+}
+
+/* Tab Navigasi Mendatang / Selesai / Semua */
+.page-tasks__tabs {
+  display: flex;
+  gap: var(--space-8);
+  border-bottom: var(--border-width-thin) solid var(--color-border);
+  overflow-x: auto;
+}
+
+.page-tasks__tab {
+  position: relative;
+  min-height: 44px;
+  padding: var(--space-8) var(--space-16);
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-supporting);
+  font-weight: var(--font-weight-semibold);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.page-tasks__tab--active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+@media (hover: hover) {
+  .page-tasks__tab:hover:not(.page-tasks__tab--active) {
+    color: var(--color-text-primary);
+  }
+}
+
+.page-tasks__tab:focus-visible {
+  outline: var(--border-width-medium) solid var(--color-focus-ring);
+  outline-offset: -2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Grid Kartu Tugas: 1 kolom di mobile */
+.page-tasks__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+}
+
+/* Skeleton Card */
+.page-tasks__skeleton-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  padding: var(--space-16);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-surface);
+}
+
+.page-tasks__skeleton-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+  padding-top: var(--space-12);
+  border-top: var(--border-width-thin) solid var(--color-border);
+}
+
+/* Panel simulasi 4 state */
+.page-tasks__demo-bar {
+  margin-top: var(--space-8);
+  padding: var(--space-12) var(--space-16);
+  border: var(--border-width-thin) dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-surface);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+
+.page-tasks__demo-label {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+}
+
+.page-tasks__demo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.page-tasks__demo-btn {
+  min-height: 36px;
+  padding: var(--space-4) var(--space-12);
+  border: var(--border-width-thin) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-page);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+}
+
+.page-tasks__demo-btn--active {
+  background-color: var(--color-primary-bg);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.page-tasks__demo-btn:focus-visible {
+  outline: var(--border-width-medium) solid var(--color-focus-ring);
+}
+
+/* Breakpoint Desktop (>= 840px): Header sejajar + 2 kolom kartu tugas */
+@media (min-width: 840px) {
+  .page-tasks {
+    gap: var(--space-32);
+  }
+
+  .page-tasks__title-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-24);
+  }
+
+  .page-tasks__search-wrap {
+    max-width: 380px;
+  }
+
+  .page-tasks__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-24);
+  }
+
+  .page-tasks__skeleton-card {
+    padding: var(--space-24);
+  }
+}

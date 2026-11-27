@@ -7,10 +7,14 @@ import { HomePage } from './pages/HomePage';
 import { SearchCoursePage } from './pages/SearchCoursePage';
 import { CoursePreviewPage } from './pages/CoursePreviewPage';
 import { CourseDetailPage } from './pages/CourseDetailPage';
+import { MaterialPage } from './pages/MaterialPage';
+import { QuizPage } from './pages/QuizPage';
+import { TaskListPage } from './pages/TaskListPage';
 import {
   MOCK_COURSE_CATALOG,
   MOCK_ENROLLED_COURSES,
   MOCK_STUDENT,
+  MOCK_TASKS,
 } from './data/mockElitagData';
 
 const ROUTES = {
@@ -23,7 +27,7 @@ const ROUTES = {
   QUIZ: '#/kuis',
   FORUM: '#/forum',
   TASKS: '#/tugas',
-  TASK_SUBMIT: '#/kirim-tugas',
+  TASK_SUBMIT: '#/tugas/kumpul',
   PROFILE: '#/profil',
 };
 
@@ -34,6 +38,7 @@ function parseHash() {
   return {
     path,
     query: params.get('q') || '',
+    courseFilter: params.get('mk') || '',
   };
 }
 
@@ -41,9 +46,14 @@ export default function App() {
   const [location, setLocation] = useState(parseHash);
   const [sessionUser, setSessionUser] = useState(null);
   const [enrolledCourses, setEnrolledCourses] = useState(MOCK_ENROLLED_COURSES);
+  const [tasks] = useState(MOCK_TASKS);
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [selectedActivity, setSelectedActivity] = useState(null);
   const [selectedTask, setSelectedTask] = useState(null);
+  const [completedMaterialIds, setCompletedMaterialIds] = useState([
+    'meet-pw-01',
+  ]);
+  const [quizResults, setQuizResults] = useState({});
 
   useEffect(() => {
     if (!window.location.hash) {
@@ -65,6 +75,7 @@ export default function App() {
     setLocation({
       path,
       query: params.get('q') || '',
+      courseFilter: params.get('mk') || '',
     });
   }
 
@@ -118,10 +129,44 @@ export default function App() {
     navigate(ROUTES.MATERIAL);
   }
 
+  function handleToggleMaterialComplete(materialId) {
+    setCompletedMaterialIds((prev) =>
+      prev.includes(materialId)
+        ? prev.filter((id) => id !== materialId)
+        : [...prev, materialId]
+    );
+  }
+
+  function handleOpenTasksFromCourse(course) {
+    const query = course?.title
+      ? `?mk=${encodeURIComponent(course.title)}`
+      : '';
+    navigate(`${ROUTES.TASKS}${query}`);
+  }
+
   function handleOpenQuiz(payload) {
     setSelectedCourse(payload.course);
     setSelectedActivity(payload.quiz);
     navigate(ROUTES.QUIZ);
+  }
+
+  function handleOpenQuizFromTasks(taskItem) {
+    const matchedCourse =
+      MOCK_COURSE_CATALOG.find((item) => item.id === taskItem.courseId) ||
+      MOCK_COURSE_CATALOG[0];
+    setSelectedCourse(matchedCourse);
+    setSelectedActivity({
+      id: taskItem.id,
+      title: taskItem.title,
+    });
+    navigate(ROUTES.QUIZ);
+  }
+
+  function handleSubmitQuiz(resultSummary) {
+    setQuizResults((prev) => ({
+      ...prev,
+      [resultSummary.quizId]: resultSummary,
+    }));
   }
 
   function handleOpenForum(payload) {
@@ -132,7 +177,10 @@ export default function App() {
 
   function handleOpenTaskSubmit(task) {
     setSelectedTask(task);
-    navigate(ROUTES.TASK_SUBMIT);
+    const targetRoute = task?.id
+      ? `${ROUTES.TASKS}/${task.id}`
+      : ROUTES.TASK_SUBMIT;
+    navigate(targetRoute);
   }
 
   /* Halaman E01 Masuk */
@@ -200,6 +248,7 @@ export default function App() {
         onNavigate={navigate}
         onBack={() => navigate(ROUTES.HOME)}
         onOpenMaterial={handleOpenMaterial}
+        onOpenTasks={handleOpenTasksFromCourse}
         onOpenQuiz={handleOpenQuiz}
         onOpenForum={handleOpenForum}
         onLeaveCourse={handleLeaveCourse}
@@ -207,26 +256,74 @@ export default function App() {
     );
   }
 
-  /* Placeholder sementara untuk E06, E07, E08, E09, E10, dan E11 */
+  /* Halaman E06 Materi Pertemuan */
+  if (location.path === ROUTES.MATERIAL) {
+    const activeCourse =
+      selectedCourse || enrolledCourses[0] || MOCK_COURSE_CATALOG[0];
+    const materialId = selectedActivity?.id || 'act-pw-m1';
+
+    return (
+      <MaterialPage
+        course={activeCourse}
+        material={selectedActivity}
+        isCompleted={completedMaterialIds.includes(materialId)}
+        logoSrc={logoUntag}
+        onNavigate={navigate}
+        onBack={() => navigate(ROUTES.COURSE_DETAIL)}
+        onToggleComplete={handleToggleMaterialComplete}
+      />
+    );
+  }
+
+  /* Halaman Pengerjaan Kuis (E09) */
+  if (location.path === ROUTES.QUIZ) {
+    const activeCourse =
+      selectedCourse || enrolledCourses[0] || MOCK_COURSE_CATALOG[0];
+    const quizId = selectedActivity?.id || 'act-pw-q1';
+
+    return (
+      <QuizPage
+        key={quizId}
+        course={activeCourse}
+        quiz={selectedActivity}
+        savedResult={quizResults[quizId] || null}
+        logoSrc={logoUntag}
+        onNavigate={navigate}
+        onBack={() => navigate(ROUTES.COURSE_DETAIL)}
+        onSubmitQuiz={handleSubmitQuiz}
+      />
+    );
+  }
+
+  /* Halaman E07 Daftar Tugas & Tenggat */
+  if (location.path === ROUTES.TASKS) {
+    return (
+      <TaskListPage
+        tasks={tasks}
+        initialCourseFilter={location.courseFilter}
+        logoSrc={logoUntag}
+        onNavigate={navigate}
+        onOpenTask={handleOpenTaskSubmit}
+        onOpenQuiz={handleOpenQuizFromTasks}
+      />
+    );
+  }
+
+  /* Deteksi rute detail/pengumpulan tugas: #/tugas/kumpul atau #/tugas/:id */
+  const isTaskSubmitRoute =
+    location.path === ROUTES.TASK_SUBMIT ||
+    location.path.startsWith(`${ROUTES.TASKS}/`);
+
+  const taskIdFromUrl = isTaskSubmitRoute
+    ? location.path.replace(`${ROUTES.TASKS}/`, '')
+    : '';
+  const resolvedTask =
+    selectedTask ||
+    tasks.find((item) => item.id === taskIdFromUrl) ||
+    tasks[0];
+
+  /* Placeholder sementara untuk E08, E10, dan E11 */
   const placeholderMap = {
-    [ROUTES.MATERIAL]: {
-      nav: 'beranda',
-      backRoute: ROUTES.COURSE_DETAIL,
-      backLabel: 'Kembali ke Halaman Kelas',
-      title: `E06 — ${selectedActivity?.title || 'Materi Pertemuan'}`,
-      desc: selectedCourse
-        ? `${selectedCourse.title} · ${selectedActivity?.subtitle || 'Bacaan, berkas, video, dan tombol Tandai Selesai.'}`
-        : 'Halaman materi pertemuan akan dibangun pada tahap berikutnya.',
-    },
-    [ROUTES.QUIZ]: {
-      nav: 'beranda',
-      backRoute: ROUTES.COURSE_DETAIL,
-      backLabel: 'Kembali ke Halaman Kelas',
-      title: `E09 — ${selectedActivity?.title || 'Pengerjaan Kuis'}`,
-      desc: selectedCourse
-        ? `${selectedCourse.title} · ${selectedActivity?.subtitle || 'Waktu mundur, navigasi soal, dan simpan otomatis.'}`
-        : 'Halaman pengerjaan kuis akan dibangun pada tahap berikutnya.',
-    },
     [ROUTES.FORUM]: {
       nav: 'beranda',
       backRoute: ROUTES.COURSE_DETAIL,
@@ -235,22 +332,6 @@ export default function App() {
       desc: selectedCourse
         ? `Ruang diskusi untuk mata kuliah ${selectedCourse.title}.`
         : 'Forum diskusi kelas (halaman opsional).',
-    },
-    [ROUTES.TASKS]: {
-      nav: 'tugas',
-      backRoute: ROUTES.HOME,
-      backLabel: 'Kembali ke Beranda',
-      title: 'E07 — Daftar Tugas & Tenggat',
-      desc: 'Daftar seluruh tugas dan kuis menurut tenggat akan dibangun pada tahap berikutnya.',
-    },
-    [ROUTES.TASK_SUBMIT]: {
-      nav: 'tugas',
-      backRoute: ROUTES.HOME,
-      backLabel: 'Kembali ke Beranda',
-      title: `E08 — ${selectedTask?.title || 'Detail & Pengumpulan Tugas'}`,
-      desc: selectedTask
-        ? `${selectedTask.courseName} · ${selectedTask.dueDateText}`
-        : 'Formulir unggah berkas tugas akan dibangun pada tahap berikutnya.',
     },
     [ROUTES.PROFILE]: {
       nav: 'profil',
@@ -261,8 +342,17 @@ export default function App() {
     },
   };
 
-  const activePlaceholder =
-    placeholderMap[location.path] || placeholderMap[ROUTES.TASKS];
+  const activePlaceholder = isTaskSubmitRoute
+    ? {
+        nav: 'tugas',
+        backRoute: ROUTES.TASKS,
+        backLabel: 'Kembali ke Daftar Tugas',
+        title: `E08 — ${resolvedTask?.title || 'Detail & Pengumpulan Tugas'}`,
+        desc: resolvedTask
+          ? `${resolvedTask.courseName} · ${resolvedTask.dueDateText} · Status: ${resolvedTask.status}`
+          : 'Formulir unggah berkas tugas akan dibangun pada tahap berikutnya.',
+      }
+    : placeholderMap[location.path] || placeholderMap[ROUTES.PROFILE];
 
   return (
     <AppLayoutTemplate

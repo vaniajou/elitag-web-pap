@@ -8,3 +8,4 @@ export { FilterChipGroup } from './FilterChipGroup/FilterChipGroup';
 export { PageHeader } from './PageHeader/PageHeader';
 export { InfoList } from './InfoList/InfoList';
 export { ActivityItem } from './ActivityItem/ActivityItem';
+export { TaskItem } from './TaskItem/TaskItem';

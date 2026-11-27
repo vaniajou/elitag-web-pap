@@ -65,6 +65,26 @@ function BookIcon() {
   );
 }
 
+function TaskDocIcon() {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+      <polyline points="14 2 14 8 20 8" />
+      <line x1="16" y1="13" x2="8" y2="13" />
+      <line x1="16" y1="17" x2="8" y2="17" />
+    </svg>
+  );
+}
+
 function QuizIcon() {
   return (
     <svg
@@ -101,6 +121,7 @@ function ForumIcon() {
 }
 
 function getActivityIcon(type) {
+  if (type === 'task') return <TaskDocIcon />;
   if (type === 'quiz') return <QuizIcon />;
   if (type === 'forum') return <ForumIcon />;
   return <BookIcon />;
@@ -112,6 +133,7 @@ export function CourseDetailPage({
   onNavigate,
   onBack,
   onOpenMaterial,
+  onOpenTasks,
   onOpenQuiz,
   onOpenForum,
   onLeaveCourse,
@@ -133,7 +155,9 @@ export function CourseDetailPage({
     MOCK_COURSE_CONTENT[activeCourse.id] || MOCK_COURSE_CONTENT.default;
 
   function handleActivityClick(activity) {
-    if (activity.type === 'quiz') {
+    if (activity.type === 'task') {
+      onOpenTasks?.(activeCourse);
+    } else if (activity.type === 'quiz') {
       onOpenQuiz?.({ course: activeCourse, quiz: activity });
     } else if (activity.type === 'forum') {
       onOpenForum?.({ course: activeCourse, forum: activity });
@@ -296,7 +320,6 @@ export function CourseDetailPage({
               </p>
             </section>
 
-            {/* Aksi destruktif awal menggunakan varian tersier (bukan solid merah), baru konfirmasi merah di dialog */}
             <section
               className="page-course__danger-box"
               aria-labelledby="course-manage-heading"

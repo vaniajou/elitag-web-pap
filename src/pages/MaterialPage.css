@@ -1,0 +1,349 @@
+/* Mobile-first (< 840px) */
+.page-material {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+.page-material__layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+.page-material__main,
+.page-material__side,
+.page-material__skeleton-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+/* Kartu Pemutar Video */
+.page-material__video-card {
+  overflow: hidden;
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-surface);
+  box-shadow: var(--elevation-2);
+}
+
+.page-material__video-stage {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1f1f1f; /* Abu-abu sangat gelap sesuai desain video E06, bukan #000000 */
+  transition: background-color var(--transition-normal);
+}
+
+.page-material__video-stage--playing {
+  background-color: #2b2438;
+}
+
+.page-material__play-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border: 0;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  box-shadow: var(--elevation-2);
+  cursor: pointer;
+  transition:
+    transform var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+@media (hover: hover) {
+  .page-material__play-btn:hover {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+    transform: scale(1.05);
+  }
+}
+
+.page-material__play-btn:focus-visible {
+  outline: var(--border-width-medium) solid var(--color-focus-ring);
+  outline-offset: 4px;
+}
+
+.page-material__video-duration {
+  position: absolute;
+  right: var(--space-12);
+  bottom: var(--space-12);
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-sm);
+  background-color: rgba(20, 16, 30, 0.8);
+  color: var(--color-on-primary);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+}
+
+.page-material__video-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: var(--space-16);
+}
+
+.page-material__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.page-material__course-ref {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+}
+
+.page-material__video-title {
+  margin: 0;
+  font-size: var(--font-size-card-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  color: var(--color-text-primary);
+}
+
+.page-material__video-desc {
+  margin: 0;
+  max-width: var(--measure-readable);
+  font-size: var(--font-size-supporting);
+  line-height: var(--line-height-body);
+  color: var(--color-text-muted);
+}
+
+/* Kartu Konten Umum */
+.page-material__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  padding: var(--space-16);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-surface);
+  box-shadow: var(--elevation-1);
+}
+
+.page-material__section-title {
+  margin: 0;
+  font-size: var(--font-size-card-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  color: var(--color-text-primary);
+}
+
+.page-material__summary {
+  margin: 0;
+  max-width: var(--measure-readable);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  color: var(--color-text-primary);
+}
+
+.page-material__points-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding-top: var(--space-12);
+  border-top: var(--border-width-thin) solid var(--color-border);
+}
+
+.page-material__sub-title {
+  margin: 0;
+  font-size: var(--font-size-supporting);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+.page-material__points {
+  margin: 0;
+  padding-left: var(--space-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.page-material__point-item {
+  max-width: var(--measure-readable);
+  font-size: var(--font-size-supporting);
+  line-height: var(--line-height-body);
+  color: var(--color-text-muted);
+}
+
+/* Daftar Berkas Unduhan */
+.page-material__files {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.page-material__file-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  width: 100%;
+  min-height: 60px;
+  padding: var(--space-12);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-page);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+@media (hover: hover) {
+  .page-material__file-item:hover {
+    border-color: var(--color-primary);
+    background-color: var(--color-primary-bg);
+  }
+}
+
+.page-material__file-item:focus-visible {
+  outline: var(--border-width-medium) solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+.page-material__file-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-primary-bg);
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.page-material__file-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.page-material__file-title {
+  font-size: var(--font-size-supporting);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.page-material__file-name {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-muted);
+  overflow-wrap: anywhere;
+}
+
+.page-material__file-dl {
+  display: inline-flex;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.page-material__notice {
+  margin: 0;
+  padding: var(--space-12) var(--space-16);
+  border-radius: var(--radius-md);
+  background-color: var(--color-status-success-bg);
+  color: var(--color-status-success-text);
+  font-size: var(--font-size-supporting);
+  font-weight: var(--font-weight-medium);
+}
+
+.page-material__actions-card {
+  box-shadow: var(--elevation-2);
+}
+
+/* Panel simulasi 4 state */
+.page-material__demo-bar {
+  margin-top: var(--space-8);
+  padding: var(--space-12) var(--space-16);
+  border: var(--border-width-thin) dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-surface);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+
+.page-material__demo-label {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+}
+
+.page-material__demo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.page-material__demo-btn {
+  min-height: 36px;
+  padding: var(--space-4) var(--space-12);
+  border: var(--border-width-thin) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-page);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+}
+
+.page-material__demo-btn--active {
+  background-color: var(--color-primary-bg);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.page-material__demo-btn:focus-visible {
+  outline: var(--border-width-medium) solid var(--color-focus-ring);
+}
+
+/* Breakpoint Desktop (>= 840px): 2 kolom (Video & Bacaan kiri, Berkas & Aksi kanan) */
+@media (min-width: 840px) {
+  .page-material {
+    gap: var(--space-32);
+  }
+
+  .page-material__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    align-items: start;
+    gap: var(--space-24);
+  }
+
+  .page-material__main {
+    gap: var(--space-24);
+  }
+
+  .page-material__side {
+    position: sticky;
+    top: var(--space-32);
+    gap: var(--space-24);
+  }
+
+  .page-material__video-meta,
+  .page-material__card {
+    padding: var(--space-24);
+  }
+
+  .page-material__section-title {
+    font-size: var(--font-size-section-title);
+  }
+}
